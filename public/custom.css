@@ -1,0 +1,413 @@
+.tab_image img {
+    width: 100% !important;
+}
+
+#tabs  a {
+    color: black;
+    font-size: 13px;
+}
+
+#tabs .col {
+    padding-bottom: 20px;
+}
+
+.bg-gray {
+    background: #0072b1!important;
+}
+
+.space {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+.bg-gray {
+    background: #fafafa!important;
+}
+
+.col-left, .col-right {
+    background: #fff;
+    border-radius: 6px;
+    border: 2px solid #0072b1;
+}
+
+.left-header, .right-header {
+    background-color: #0072b1;
+    padding: 10px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.left-data, .right-data {
+    padding: 15px;
+}
+
+.left-header h2, .right-header h2 {
+    color: #fff;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: auto !important;
+}
+
+.extra-input input, .extra-input select, .extra-input textarea {
+    margin-bottom: 15px;
+}
+
+.right-data ul li, .left-data ul li {
+    color: #1e2f41;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.right-data ul, li {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.mobile_callback {
+    z-index: 999;
+    position: fixed;
+    margin: 0px;
+    color: #fff;
+    transition: all .5s ease-in-out;
+    position: fixed;
+    bottom: 84px;
+    border-radius: 50%;
+    left: 15px;
+    z-index: 999;
+    background: #0072b1;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+}
+
+.mobile_callback img {
+    padding-top: 9px;
+}
+
+.home_about .feature-text .feature-icon img {
+    width: 50px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding-left: 0px;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+}
+
+.home_stat img {
+    width: 50px;
+    margin-bottom: 10px;
+    display: inline-block;
+    padding-left: 0px;
+    transition: 0.5s ease-in-out;
+    -webkit-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+}
+
+
+.price_bar {
+    text-align: center;
+    padding: 10px 0px 1px 0px;
+    background: #0072b1;
+}
+
+.clients-list .item {
+    height: 200px; 
+    position: relative;
+}
+
+.clients-list .item img {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 70%;
+}
+
+.service_form {
+    background-color: #fafafa;
+    padding: 30px 4% 15px 4%;
+    border-radius: 5px;
+    height: auto;
+    width: 100%;
+    position: relative;
+    font-size: 0;
+    overflow: hidden;
+    -webkit-box-shadow: 0 1px 11px 0 rgb(0 0 0 / 40%);
+    box-shadow: 0 1px 11px 0 rgb(0 0 0 / 40%);
+}
+
+.cta-price {
+    display: flex;
+    padding-bottom: 20px;
+    padding-top: 13px;
+}
+
+.cta-price span {
+    color: #a7a7a7;
+    font-size: 13px;
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+
+.agency-form .contact-form, .agency-counter .row { background: #273a58; }
+
+.agency-counter .counter:nth-child(1) {
+    background: rgba(53, 74, 107, 0.2);
+    padding: 60px 60px;
+}
+
+.agency-counter .counter:nth-child(2) {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 60px 60px;
+}
+
+.agency-counter .counter:nth-child(3) {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 60px 60px;
+}
+
+.gt3-contact-widget {
+    width: 350px;
+}
+
+.gt3-contact-widget {
+    position: fixed;
+    z-index: 100;
+    top: 25%;
+    right: 0;
+    width: 300px;
+    box-sizing: border-box;
+    padding: 25px 30px 20px;
+    min-height: 220px;
+    background-color: #f5f7f8;
+    border-bottom-left-radius: 2px;
+    -webkit-transform: translateX(100%);
+    transition: transform .4s;
+    transform: translateX(100%);
+}
+
+.gt3-contact-widget_label.with-icon {
+    padding-right: 64px;
+}
+
+.gt3-contact-widget_label {
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+.gt3-contact-widget_label {
+    cursor: pointer;
+    position: absolute;
+    transform-origin: 0 0;
+    font-size: 16px;
+    line-height: 34px;
+    z-index: 1;
+    padding: 10px;
+    color: #fff;
+    left: 0;
+    top: 0;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    -webkit-transform: rotate(-90deg) translate(-100%, -100%);
+    transform: rotate(-90deg) translate(-100%, -100%);
+}
+
+@media only screen and (max-width: 767px) {
+    .gt3-contact-widget,
+    .drawer_sidebar {
+        display: none;
+    }
+}
+
+.gt3-contact-widget_icon {
+    display: block;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: rotate(90deg);
+    width: 54px;
+    height: 54px;
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.gt3-contact-widget_icon img {
+    width: 24px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.gt3-contact-widget.open {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.gt3-contact-widget.open {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+}
+
+.gt3-contact-widget {
+    width: 350px;
+}
+
+.gt3-contact-widget.open {
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.gt3-contact-widget.open {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+}
+
+.gt3-contact-widget {
+    width: 350px;
+}
+
+.gt3-contact-widget .wpcf7-form-control-wrap {
+    margin-bottom: 0;
+}
+
+.wpcf7-form-control-wrap {
+    margin-bottom: 25px;
+    display: block;
+}
+
+.wpcf7-form-control-wrap {
+    position: relative;
+}
+
+
+/*.wpcf7-form-control-wrap input[type=date],
+.wpcf7-form-control-wrap input[type=email], 
+.wpcf7-form-control-wrap input[type=number],
+.wpcf7-form-control-wrap input[type=password],
+.wpcf7-form-control-wrap input[type=search],
+.wpcf7-form-control-wrap input[type=tel], 
+.wpcf7-form-control-wrap input[type=text], 
+.wpcf7-form-control-wrap input[type=url],
+.wpcf7-form-control-wrap select, 
+.wpcf7-form-control-wrap textarea {
+    background: #fff !important;
+    font-size: 12px !important;
+    color: #848d95 !important;
+    border-color: #e4e4e4 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}*/
+
+div.wpcf7 .screen-reader-response {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.gt3-contact-widget p {
+    padding: 0;
+    margin: 0;
+    line-height: 24px;
+    font-size: 14px;
+}
+
+.gt3-contact-widget .wpcf7-form-control-wrap {
+    margin-bottom: 0;
+}
+
+.drawer_sidebar {
+    height: auto;
+    width: 0;
+    position: fixed;
+    background-color: #fff;
+    z-index: 1001;
+    box-sizing: border-box;
+    min-height: 220px;
+    border-bottom-left-radius: 2px;
+    top: 8%;
+    right: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.drawer_sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .drawer_sidebar {
+        padding-top: 15px;
+    }
+    .drawer_sidebar a {
+        font-size: 18px;
+    }
+}
+
+.show_on_mobile {
+  display: none;
+}
+
+.show_on_desktop {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .show_on_mobile {
+    display: block;
+  }
+
+  .show_on_desktop {
+    display: none;
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+    .mega-menu .menu-logo img {
+        height: 54px;
+    }
+}

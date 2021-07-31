@@ -1,0 +1,32 @@
+<section class="blog blog-grid-3-column white-bg page-section-ptb pb-0">
+    <div class="container">
+        <div class="row">
+            <% Offer.all.each do |f| %>
+                <div class="col-lg-4 col-md-4 mb-2">
+                    <div class="blog-entry mb-50">
+                        <div class="entry-image clearfix">
+                            <img class="img-fluid" src="<%= f.image %>" alt="">
+                        </div>
+                        <div class="blog-detail">
+                            <div class="entry-title mb-10">
+                                <a href="#"><%= f.title %></a>
+                            </div>
+                            <div class="entry-content">
+                                <p><%= f.description %> </p>
+                            </div>
+                            <div class="text-center">
+                                <button 
+                                    class="button offer_pay_now_button" 
+                                    data-amount="<%= f.amount_to_pay %>"
+                                    data-offerid="<%= f.id %>"
+                                    >
+                                        <%= f.price %>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>

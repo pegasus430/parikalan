@@ -1,0 +1,174 @@
+<style>
+@media only screen and (max-width: 768px) {
+
+    .sm-mt-30 {
+        margin-top: 30px;
+    }
+
+} 
+
+.btn-group .btn {
+    margin-right: 2px;
+}
+
+</style>
+
+
+<section class="page-section-ptb home_about">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-sm-12 pb-3">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="/loan_calculator/home" class="btn btn-primary">Home Loan</a>
+                    <a href="/loan_calculator/personal" class="btn btn-primary">Personal Loan</a>
+                    <a href="/loan_calculator/car" class="btn btn-primary">Car Loan</a>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="pb-3">
+                    <p>
+                        <button type="button" class="btn btn-primary">Loan Amount</button>
+                    </p>
+                    <input type="number" id="loan_amount" value="<%= @amount %>" class="input_style" />
+                </div>
+                <div class="pb-3">
+                    <p>
+                        <button type="button" class="btn btn-primary">Rate Of Interest</button>
+                    </p>
+                    <input type="number" id="interest_rate" value="<%= @rate_of_interest %>" class="input_style" />
+                </div>
+                <div class="pb-3">
+                    <p>
+                        <button type="button" class="btn btn-primary">Number Of Months</button>
+                    </p>
+                    <input type="number" id="loan_period" value="<%= @tenue %>" class="input_style" />
+                </div>
+                <div class="row pt-3 pb-5">
+                    <div class="col-sm-4 pb-3">
+                        <p class="text-center" style="color: black; font-weight: ;">Monthly EMI</p>
+                        <button type="button" class="btn-success btn" id="output1" style="width: 100%;"></button>
+                    </div>
+                    <div class="col-sm-4 pb-3">
+                        <p class="text-center" style="color: black; font-weight: ;">Total Interest</p>
+                        <button type="button" class="btn btn-warning" id="output2" style="width: 100%;"></button>
+                    </div>
+                    <div class="col-sm-4 pb-3">
+                        <p class="text-center" style="color: black; font-weight: ;">Payable Amount</p>
+                        <button type="button" class="btn btn-info" id="output3" style="width: 100%;"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div id="chartContainer" style="width: 100%; height: 400px;"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 sm-mt-30">
+                <%= render partial: 'calculators/gst_calculator/all_calculators_side_bar' %>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<script type="text/javascript">
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+
+    setTimeout(function(){ 
+
+
+        function calculate_emi(pamt, rate, month) {
+            var monthlyInterestRatio = rate / 100 / 12;
+            var monthlyInterest = monthlyInterestRatio * pamt;
+            var top = Math.pow(1 + monthlyInterestRatio, month);
+            var bottom = top - 1;
+            var sp = top / bottom;
+            var emi = pamt * monthlyInterestRatio * sp;
+            var result = emi.toFixed(2);
+            return Math.round(result);
+        }
+
+        function take_inputs_and_generate_result() {
+            var loan_amount = $("#loan_amount").val();
+            var interest_rate = $("#interest_rate").val();
+            var loan_period = $("#loan_period").val();
+
+            var emi = calculate_emi(loan_amount, interest_rate, loan_period);
+
+            var total_amount_to_be_paid = emi * loan_period;
+            var total_interest = total_amount_to_be_paid - loan_amount;
+
+            var output1 = emi;
+            $("#output1").html(output1);
+
+            var output2 = total_interest;
+            $("#output2").html(output2);
+
+            var output3 = total_amount_to_be_paid;
+            $("#output3").html(output3);
+
+            renderChart(loan_amount, total_interest);
+        }
+
+        function renderChart(principle_amount, interest_amount) {
+            principle_amount = parseInt(principle_amount);
+
+            var total_amount = principle_amount + interest_amount;
+            var priciple_percentage = Math.round((principle_amount / total_amount) * 100);
+            var interest_percentage = Math.round((interest_amount / total_amount) * 100);
+
+            console.log(principle_amount, interest_amount, priciple_percentage, interest_percentage);
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light1", // "light1", "light2", "dark1", "dark2"
+                exportEnabled: false,
+                animationEnabled: true,
+                title: {
+                    text: "Breakup Of Total Payment",
+                },
+                data: [
+                    {
+                        type: "pie",
+                        startAngle: 25,
+                        toolTipContent: "<b>{label}</b>: {y}%",
+                        showInLegend: "true",
+                        legendText: "{label}",
+                        indexLabelFontSize: 16,
+                        indexLabel: "{label} - {y}%",
+                        dataPoints: [
+                            { y: priciple_percentage, label: "Principle Amount" },
+                            { y: interest_percentage, label: "Interest Amount" },
+                        ],
+                    },
+                ],
+            });
+            chart.render();
+        }
+
+        if ($("#loan_period").length == 1) {
+            take_inputs_and_generate_result();
+        }
+
+        $("#loan_period, #interest_rate, #loan_amount").change(
+            function() {
+                take_inputs_and_generate_result();
+            }
+        );
+
+     }, 1000);
+
+
+});
+
+
+
+
+</script>

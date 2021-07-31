@@ -1,0 +1,426 @@
+<section class="two-side space bg-gray mb-5">
+    <div class="container text-center">
+        <div class="section-heading pb-5">
+            <h2> MSME / SSI / Udyog Aadhaar - Registration <span class="heading_divider"> </span> </h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+            <% unless @service.form_instruction.blank? %>
+            <div class="col-md-7">
+                <% else %>
+                <div class="col-md-12">
+                    <% end %>
+                    <div class="col-left">
+                        <div class="left-header">
+                            <h2>Registration Form</h2>
+                        </div>
+                        <div class="left-data">
+
+                            <form 
+                                class="custom-form custom_form_submit" 
+                                data-success-id="success_message_1" 
+                                action="<%= msme_registration_inquiry_index_path %>" 
+                                method="post" 
+                                name="contactform" 
+                                data-success-msg="Thank you! We will be in touch soon!" 
+                                id="cf_msme">
+                            
+                                <%= recaptcha_action('form_fill') %>
+
+                                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                                <div class="form-group">
+                                    <label class="text-left">1. Aadhaar Number / आधार नंबर</label>
+                                    <input type="text" class="form-control" required="true" name="aadhaar_number" id="aadhaar_number" value="" maxlength="12">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">2. Name of Entrepreneur/Applicant / उद्यमी का नाम</label>
+                                    <input type="text" class="form-control" required="true" name="name_of_applicant" id="name_of_applicant" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">3. Social Category / सामाजिक वर्ग</label>
+                                    <select class="form-control" name="social_category" id="social_category">
+                                        <option value="">Select Social Category</option>
+                                        <option value="General">General</option>
+                                        <option value="SC">SC</option>
+                                        <option value="ST">ST</option>
+                                        <option value="OBC">OBC</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">4. Gender / लिंग</label>
+                                    <select class="form-control" name="gender" id="gender">
+                                        <option selected="selected" value="">Select Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">5. Physically handicapped / शारीरिक रूप से विकलांग</label>
+                                    <select class="form-control" required="true" name="physically_handicapped" id="physically_handicapped">
+                                        <option selected="selected" value="">Select Any</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">6. Name of Enterprise/Business / उद्यम का नाम</label>
+                                    <input type="text" class="form-control" required="true" name="name_of_business" id="name_of_business" value="" maxlength="200">
+                                </div>
+                                <div class="form-group">
+                                    <label>7. GST Number(Optional)</label>
+                                    <input type="text" class="form-control" name="gst_no" id="gst_no" placeholder="Eg-58AABCT3538Q5ZV" maxlength="15">
+                                    <div id="error_gst" class="error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">8. Type of Organisation / संगठन के प्रकार</label>
+                                    <select class="form-control" name="type_of_organisation" id="type_of_organisation">
+                                        <option value="">Select Type of Organisation</option>
+                                        <option value="Proprietorship Firm">Proprietorship Firm</option>
+                                        <option value="Hindu Undivided Family">Hindu Undivided Family</option>
+                                        <option value="Partnership Firm">Partnership Firm</option>
+                                        <option value="Limited Liability Partnership">Limited Liability Partnership</option>
+                                        <option value="Co-operative Society">Co-operative</option>
+                                        <option value="Private Limited">Private Limited</option>
+                                        <option value="Public Limited">Public Limited</option>
+                                        <option value="Self Help Group">Self Help Group</option>
+                                        <option value="Society">Society</option>
+                                        <option value="Trust">Trust</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">9. PAN / पैन नंबर </label>
+                                    <input type="text" class="form-control" required="true" name="pan_number" id="pan_number" value="" maxlength="10">
+                                </div>
+                                <div class="form-group extra-input">
+                                    <label class="text-left">10. Location of Plant (Address) / संयंत्र के स्थान</label>
+
+                                    <input type="text" class="form-control" placeholder="Flat/Door No. /फ्लैट / द्वार / ब्लॉक सं" name="location_of_plant_flat_no" id="location_of_plant_flat_no" value="" maxlength="200">
+
+                                    <input type="text" class="form-control" placeholder="Name of Premise/Building /परिसर / भवन / गांव का नाम" name="location_of_plant_premise" id="location_of_plant_premise" value="" maxlength="200">
+
+                                    <input type="text" class="form-control" placeholder="Road/Street /सड़क/ मार्ग / गली" name="location_of_plant_road" id="location_of_plant_road" value="" maxlength="200">
+
+                                    <input type="text" class="form-control" placeholder="Area/Locality /क्षेत्र / स्थान" name="location_of_plant_area" id="location_of_plant_area" value="" maxlength="200">
+
+                                    <input type="text" class="form-control" placeholder="City /शहर" name="location_of_plant_city" id="location_of_plant_city" value="" maxlength="200">
+
+                                    <input type="text" class="form-control" placeholder="PIN /पिन" name="location_of_plant_pin_no" id="location_of_plant_pin_no" value="" maxlength="6" pattern="\d+">
+
+                                    <select class="form-control" name="location_of_plant_state" id="location_of_plant_state">
+                                        <option value="">Select State </option>
+                                        <option value='1'>ANDAMAN AND NICOBAR ISLANDS / अंदमान और निकोबार द्वीपसमूह</option>
+                                        <option value='2'>ANDHRA PRADESH / आन्ध्र प्रदेश</option>
+                                        <option value='3'>ARUNACHAL PRADESH / अरुणाचल प्रदेश</option>
+                                        <option value='4'>ASSAM / असम</option>
+                                        <option value='5'>BIHAR / बिहार</option>
+                                        <option value='6'>CHANDIGARH / चंडीगढ़</option>
+                                        <option value='7'>CHHATISGARH / छत्तीसगढ़</option>
+                                        <option value='8'>DADRA AND NAGAR HAVELI / दादरा और नगर हवेली</option>
+                                        <option value='9'>DAMAN AND DIU / दमन और दीव</option>
+                                        <option value='10'>DELHI / दिल्ली</option>
+                                        <option value='11'>GOA / गोवा</option>
+                                        <option value='12'>GUJARAT / गुजरात</option>
+                                        <option value='13'>HARYANA / हरियाणा</option>
+                                        <option value='14'>HIMACHAL PRADESH / हिमाचल प्रदेश</option>
+                                        <option value='15'>JAMMU AND KASHMIR / जम्मू और कश्मीर</option>
+                                        <option value='16'>JHARKHAND / झारखण्ड</option>
+                                        <option value='17'>KARNATAKA / कर्णाटक</option>
+                                        <option value='18'>KERALA / केरल</option>
+                                        <option value='19'>LADAKH / लद्दाख</option>
+                                        <option value='20'>LAKSHADWEEP / लक्षद्वीप</option>
+                                        <option value='21'>MADHYA PRADESH / मध्य प्रदेश</option>
+                                        <option value='22'>MAHARASHTRA / महाराष्ट्र</option>
+                                        <option value='23'>MANIPUR / मणिपुर</option>
+                                        <option value='24'>MEGHALAYA / मेघालय</option>
+                                        <option value='25'>MIZORAM / मिज़ोरम</option>
+                                        <option value='26'>NAGALAND / नागालैण्ड</option>
+                                        <option value='27'>ODISHA / ओड़िशा</option>
+                                        <option value='28'>PONDICHERRY / पुडुचेरी</option>
+                                        <option value='29'>PUNJAB / पंजाब</option>
+                                        <option value='30'>RAJASTHAN / राजस्थान</option>
+                                        <option value='31'>SIKKIM / सिक्किम</option>
+                                        <option value='32'>TAMIL NADU / तमिलनाडु</option>
+                                        <option value='33'>TELANGANA / तेलंगाना</option>
+                                        <option value='34'>TRIPURA / त्रिपुरा</option>
+                                        <option value='35'>UTTAR PRADESH / उत्तर प्रदेश</option>
+                                        <option value='36'>UTTARAKHAND / उत्तराखण्ड</option>
+                                        <option value='37'>WEST BENGAL / पश्चिम बंगाल</option>
+                                    </select>
+
+                            
+
+                                <input type="text" class="form-control" placeholder="District" name="location_of_plant_district" id="location_of_plant_district" value="" maxlength="200">
+                                </div>
+                                <!-- <div id="addmoreplantaddress"></div>
+                                <div class="form-group">
+                                    <input type="hidden" name="addmore_value" id="addmore_value" value="2">
+                                    <button type="button" class="btn btn-primar add-more-row" id="addMore">Add More</button>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="text-left">11. Office Address / आधिकारिक पता</label>
+                                    <label>
+                                        Same As Plant Address
+                                        <input type="radio" checked="" value="Yes" name="office_address" id="office_address">Yes
+                                        <input type="radio" value="No" name="office_address" id="office_address">No
+                                    </label>
+                                </div>
+
+                                <div id="showhide_sameasabove" class="form-group extra-input" style="display:none;">
+                                    <input type="text" class="form-control" placeholder="Flat/Door No. /फ्लैट / द्वार / ब्लॉक सं" name="off_address[]" id="pl_address_1" value="" maxlength="200">
+                                    <input type="text" class="form-control" placeholder="Name of Premise/Building /परिसर / भवन / गांव का नाम" name="off_name_of_building_premise[]" id="name_of_building_premise_1" value="" maxlength="200">
+                                    <input type="text" class="form-control" placeholder="Road/Street /सड़क/ मार्ग / गली" name="off_road_street[]" id="road_street_1" value="" maxlength="200">
+                                    <input type="text" class="form-control" placeholder="Area/Locality /क्षेत्र / स्थान" name="off_area_locality[]" id="area_locality_1" value="" maxlength="200">
+                                    <input type="text" class="form-control" placeholder="City /शहर" name="off_city[]" id="city_1" value="" maxlength="200">
+                                    <input type="text" class="form-control" placeholder="PIN /पिन" name="off_PIN[]" id="PIN_1" value="" maxlength="6">
+                                    <select class="form-control" name="off_state[]" data-fv-notempty="" data-fv-notempty-message="The state is required" onchange="load_cities(this.value, 100);">
+                                        <option value="">Select State </option>
+                                        <option value='1'>ANDAMAN AND NICOBAR ISLANDS / अंदमान और निकोबार द्वीपसमूह</option>
+                                        <option value='2'>ANDHRA PRADESH / आन्ध्र प्रदेश</option>
+                                        <option value='3'>ARUNACHAL PRADESH / अरुणाचल प्रदेश</option>
+                                        <option value='4'>ASSAM / असम</option>
+                                        <option value='5'>BIHAR / बिहार</option>
+                                        <option value='6'>CHANDIGARH / चंडीगढ़</option>
+                                        <option value='7'>CHHATISGARH / छत्तीसगढ़</option>
+                                        <option value='8'>DADRA AND NAGAR HAVELI / दादरा और नगर हवेली</option>
+                                        <option value='9'>DAMAN AND DIU / दमन और दीव</option>
+                                        <option value='10'>DELHI / दिल्ली</option>
+                                        <option value='11'>GOA / गोवा</option>
+                                        <option value='12'>GUJARAT / गुजरात</option>
+                                        <option value='13'>HARYANA / हरियाणा</option>
+                                        <option value='14'>HIMACHAL PRADESH / हिमाचल प्रदेश</option>
+                                        <option value='15'>JAMMU AND KASHMIR / जम्मू और कश्मीर</option>
+                                        <option value='16'>JHARKHAND / झारखण्ड</option>
+                                        <option value='17'>KARNATAKA / कर्णाटक</option>
+                                        <option value='18'>KERALA / केरल</option>
+                                        <option value='19'>LADAKH / लद्दाख</option>
+                                        <option value='20'>LAKSHADWEEP / लक्षद्वीप</option>
+                                        <option value='21'>MADHYA PRADESH / मध्य प्रदेश</option>
+                                        <option value='22'>MAHARASHTRA / महाराष्ट्र</option>
+                                        <option value='23'>MANIPUR / मणिपुर</option>
+                                        <option value='24'>MEGHALAYA / मेघालय</option>
+                                        <option value='25'>MIZORAM / मिज़ोरम</option>
+                                        <option value='26'>NAGALAND / नागालैण्ड</option>
+                                        <option value='27'>ODISHA / ओड़िशा</option>
+                                        <option value='28'>PONDICHERRY / पुडुचेरी</option>
+                                        <option value='29'>PUNJAB / पंजाब</option>
+                                        <option value='30'>RAJASTHAN / राजस्थान</option>
+                                        <option value='31'>SIKKIM / सिक्किम</option>
+                                        <option value='32'>TAMIL NADU / तमिलनाडु</option>
+                                        <option value='33'>TELANGANA / तेलंगाना</option>
+                                        <option value='34'>TRIPURA / त्रिपुरा</option>
+                                        <option value='35'>UTTAR PRADESH / उत्तर प्रदेश</option>
+                                        <option value='36'>UTTARAKHAND / उत्तराखण्ड</option>
+                                        <option value='37'>WEST BENGAL / पश्चिम बंगाल</option>
+                                    </select>
+                                    <select class="form-control" name="off_district_name[]" id="district_name_100">
+                                        <option value="">Select Districts/जिला </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="text-left">12. Mobile No / मोबाइल नंबर +91-</label>
+                                    <input type="text" class="form-control" required="true" pattern="\d{10}" name="phone" name="phone" id="phone" value="" maxlength="10">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">13. Email ID / ईमेल</label>
+                                    <input type="text" class="form-control" required="true" name="email" id="email" value="" maxlength="100" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left date">14. Date of Commencement of Business / उद्यम के प्रारंभ की तिथि</label>
+                                    <input class="input-style txt-blue d-h-s form-control" placeholder="DD/MM/YYYY" type="date" name="date_of_commencement_of_business" id="date_of_commencement_of_business">
+                                </div>
+                                <div class="form-group">
+                                    <label>15. Whether Production/Business Commenced</label><br>
+                                    <label>&nbsp; &nbsp; &nbsp;<input type="radio" value="Yes" name="whether_production" id="whether_production">Yes
+                                        &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="No" name="whether_production" id="whether_production">No
+                                    </label>
+                                    <div id="error_wp" class="error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>16. Bank Name <i class="required">*</i></label>
+                                    <input type="text" class="form-control" name="bank_name" required="true" id="bank_name" placeholder="Your Bank Name">
+                                    <div id="error_bankname" class="error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">17. Bank Account Number / बैंक खाता संख्या</label>
+                                    <input type="text" class="form-control" required="true" name="bank_account_number" id="bank_account_number" value="" maxlength="20">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">18. IFSC Code / आईएफएस कोड</label>
+                                    <input type="text" class="form-control" required="true" name="ifsc_code" id="ifsc_code" value="" maxlength="20">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">19. Main Business Activity of Enterprise / इकाई का प्रमुख गतिविधि</label>
+                                    <select class="form-control" name="business_activity" id="business_activity" >
+                                        <option value="">Select Activity of Enterprise</option>
+                                        <option value="Manufacturer">Manufacturer</option>
+                                        <option value="Service provider">Service provider</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">20. NIC 2 Digit Code - Choose primary Business Activity</label>
+                                    <input type="text" class="form-control" required="true" name="nic_two_digit_code" id="nic_two_digit_code" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">21. Additional details about Business /व्यापार के बारे में अतिरिक्त जानकारी</label>
+                                    <input type="text" class="form-control" name="additional_details_about_business" id="additional_details_about_business" value="">
+                                </div>
+                                <label>22. Number of Persons Employed / व्यक्ति नियोजित <i class="required">*</i></label>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="male_employee" id="male_employee" placeholder="Male Employee">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="female_employee" id="female_employee" placeholder="Female Employee">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="other_employee" id="other_employee" placeholder="Others Employee">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group">
+
+                                <label class="text-left">19. Number of employees / व्यक्ति नियोजित</label>
+
+                                <input type="text" class="form-control" name="number_of_employees" id="number_of_employees" value="" onkeypress="return isNumberKey(event)">
+
+                            </div> -->
+                                <label>23. Investment Plant and Machinery or Equipment(In Rs.)</label>
+                                <div class="paddingleft40">
+                                    <div class="form-group">
+                                        <label>Depreciated Cost as on 31st March of Previus Year</label>
+                                        <input type="number" class="form-control" required="true" name="depreciated_cost" id="depreciated_cost" placeholder="Example-20" maxlength="20">
+                                        <div id="error_DCost" class="error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Exclusion of Cost of Polution Control, Research &amp; Development And Industrial Safety Devices</label>
+                                        <input type="number" class="form-control" required="true" name="exclusion_of_cost" id="exclusion_of_cost" placeholder="Example-20" maxlength="20">
+                                        <div id="error_isinvestment" class="error"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Net Investment in Plant and Machinery or Equipment</label>
+                                        <input type="number" class="form-control" required="true" name="net_investment" id="net_investment" placeholder="Example-20" maxlength="20">
+                                        <div id="error_amount" class="error"></div>
+                                    </div>
+                                </div>
+                                <label>24. Turnover(In Rs.) </label>
+                                <div class="paddingleft40">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Total Turnover(A) </label>
+                                                <input type="number" class="form-control" name="total_turnover_a" id="total_turnover_a" placeholder="Example-20" maxlength="20">
+                                                <div id="error_totalturnover" class="error"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Export Turnover(B)</label>
+                                                <input type="number" class="form-control" name="total_turnover_b" id="total_turnover_b" placeholder="Example-20" maxlength="20">
+                                                <div id="error_exportturnover" class="error"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Net Turnover </label>
+                                                <input type="number" class="form-control" name="total_turnover_c" id="total_turnover_c" placeholder="Example-20" maxlength="20">
+                                                <div id="error_netturnover" class="error"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>25. Are you intrested to get registered on Goverenment e-Market(GeM)</label><br>
+                                    <label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="Yes" name="intrested_to_get_registered_on_GeM" id="intrested_to_get_registered_on_GeM">Yes
+                                        &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="No" name="intrested_to_get_registered_on_GeM" id="intrested_to_get_registered_on_GeM">No
+                                    </label>
+                                    <div id="error_GeM" class="error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label>26. Are you intrested to get registered on TReDS Portal</label><br>
+                                    <label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="Yes" name="intrested_to_get_registered_on_TReDS_portal" id="intrested_to_get_registered_on_TReDS_portal">Yes
+                                        &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="No" name="intrested_to_get_registered_on_TReDS_portal" id="intrested_to_get_registered_on_TReDS_portal">No
+                                    </label>
+                                    <div id="error_trds" class="error"></div>
+                                </div>
+                                <!-- <div class="form-group">
+
+                                <label class="text-left">20. Investment in Plant and Machinery (Amount in Lacs) / निवेश</label>
+
+                                <input type="text" class="form-control" name="Investment" id="Investment" value="">
+
+                            </div> -->
+                                <!-- <div class="form-group">
+
+                                <label class="text-left">21. Attach your Aadhaar Card (Optional) </label><br>
+
+                                <span class="btn btn-primary btn-file">
+
+                                    <i class="fa fa-paperclip" style="font-size:17px"></i>
+
+                                    Attach File <input type="file" name="image" id="file">
+
+                                </span>
+
+                                <font style="color: #1c3155;"> (File should be: jpg,png file &lt; 500KB) </font><br>
+
+                                <span style="color: #1c3155;margin-top:30px">
+
+
+
+                                    <font style="font-weight:bold;margin-left:16px"> OR </font> You Can send <font style="font-weight:bold; color:#ff8000"> Documents </font> on <img src="https://www.eisocertification.com/public/front_end/assets/images/whatsapp.png" alt="" style="width: auto;">
+
+                                    <font style="font-weight:bold"> &nbsp;7015869986</font>
+
+                                </span>
+
+                            </div> -->
+                                <div class="form-group">
+                                    <input 
+                                        type="submit" 
+                                        class="btn btn-primary custom_form_payment_button" 
+                                        id="submit"
+                                        data-formidtosubmit="cf_msme"
+                                        value="<%= @service.custom_form_button_text.blank? ? "Submit" : @service.custom_form_button_text %>"
+                                        data-amount="<%= @service.custom_form_pricing %>"
+                                    >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% unless @service.form_instruction.blank? %>
+                <div class="col-md-5">
+                    <div class="col-right">
+                        <div class="right-header">
+                            <h2>Instructions</h2>
+                        </div>
+                        <div class="right-data">
+                            <%= @service.form_instruction.html_safe %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+</section>
+
+
+<script type="text/javascript">
+    
+let paymentSettingsObject = {
+    nameSelector: '#name_of_applicant',
+    emailSelector: '#email',
+    phoneSelector: '#phone',
+    purchasedItem: 'MSME / SSI / Udyog Aadhaar',
+    model: 'MsmeRegistrationInquiry'
+};
+
+</script>

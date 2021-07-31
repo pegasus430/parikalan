@@ -1,0 +1,16 @@
+<div class="col-lg-12 col-md-12">
+    <h4 class="mb-30"><%= calculators_page.calculators_title %></h4>
+</div>
+<div class="col-lg-12 col-md-12 sm-mb-30">
+    <div class="card">
+        <ul class="list-group list-group-flush">
+            <% CalculatorLink.all.each do | calculator_link | %>
+                <li class="list-group-item">
+                    <a href="<%= calculator_link.url %>">
+                        <%= calculator_link.title %>
+                    </a>
+                </li>
+            <% end %>
+        </ul>
+    </div>
+</div>

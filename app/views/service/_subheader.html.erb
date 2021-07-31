@@ -1,0 +1,123 @@
+<section class="page-title bg-overlay-black-60 parallax" data-jarallax='{"speed": 0.6}' style="background-image: url(<%= service_page.header_image %>); padding-top: 150px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="page-title-name pb-3" style="width: 100%;">
+                    <!-- <h1><%# @service.name %></h1> -->
+                    <%= @service.long_description.html_safe %>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="service_form">
+                    <div class="contact-form">
+
+                        <h3 class="mb-2">Get Business Development Kit</h3>
+
+                        <form  
+                            class="custom-form custom_form_submit" 
+                            action="<%= enquiry_path %>" 
+                            method="post"
+                            data-success-msg="Thank you! We will be in touch soon!">
+                            <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+                            <%= recaptcha_action('form_fill') %>
+
+                            <input name="service_id" value="<%= @service.id %>" type="hidden">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group mrb-25">
+                                        <input required="true" type="text" placeholder="Name" class="form-control" name="name">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mrb-25">
+                                        <input required="true" type="text" placeholder="Phone" class="form-control" pattern="\d{10}" name="phone">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mrb-25">
+                                        <input required="true" type="email" placeholder="Email" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group mrb-25">
+                                        <textarea placeholder="Comment" class="form-control" name="comment" style="height: 47px;"></textarea>
+                                    </div>
+                                </div>
+                                 <% unless @service.price_plans.blank? %>
+                                <div class="col-lg-6">
+                                    <div class="cta-price pb-0">
+                                        <h4>₹<%= @service.lowest_price %></h4>
+                                       <!--  <span>Govt Fees</span> -->
+                                    </div>
+                                <div class=" pb-3">
+                                <span class="text-black" style="font-size: 13px;">Limited Period Offer</span>
+                            </div>
+                              </div>
+                               <% end %>
+                                <div class="col-lg-6">
+                                    <div>
+                                        <button class="button">Download</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row pt-4 home_about">
+                    <div class="col-6 col-lg-4 col-md-4 col-sm-4 mb-10">
+                        <div class="feature-text">
+                            <div class="feature-icon">
+                                <img src="<%= service_page.icon_1 %>">
+                            </div>
+                             <p><%= service_page.title_1 %></p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-4 col-md-4 col-sm-4 mb-10">
+                        <div class="feature-text">
+                            <div class="feature-icon">
+                                <img src="<%= service_page.icon_2 %>">
+                            </div>
+                             <p><%= service_page.title_2 %></p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-lg-4 col-md-4 col-sm-4 mb-10">
+                        <div class="feature-text">
+                            <div class="feature-icon">
+                                <img src="<%= service_page.icon_3 %>">
+                            </div>
+                             <p><%= service_page.title_3 %></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function(){
+
+  $(".custom_form_submit").submit(function (event) {
+    event.preventDefault();
+    var action_url = $(this).attr("action");
+    var data = $(this).serialize();
+    var success_message = $(this).attr("data-success-msg");
+    $.ajax({
+      type: 'POST',
+      url: action_url,
+      data: data,
+      success: function (msg) {}
+    });
+    new Noty({
+      type: 'success',
+      timeout: 3000,
+      text: success_message,
+    }).show();
+    window.location.replace("<%= thank_you_path(type: 'lead') %>");
+  });
+
+});
+</script>

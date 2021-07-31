@@ -1,0 +1,59 @@
+<%= render partial: 'layouts/header' %>
+
+<% if @lead %>
+
+
+<%= raw(@thank_you_page.lead_thank_you_page_javascript) %>
+
+<%= render partial: 'shared/subheader', locals: {
+    title: @thank_you_page.lead_thankyou_page_title, 
+    image: @thank_you_page.header_image 
+} %>
+<section class="page-section-ptb home_about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class=" text-center">
+                    <h2 class="pb-4"><%= @thank_you_page.lead_thankyou_page_title %></h2>
+                    <%= @thank_you_page.lead_thankyou_page_body.html_safe %>
+
+                    <div>
+                        <a class="button text-white" href="/BusinessDevelopmentKit.zip">Download</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<% else %>
+
+<%= raw(@thank_you_page.payment_thank_you_page_javascript) %>
+
+<%= render partial: 'shared/subheader', locals: {
+    title: @thank_you_page.payment_thankyou_page_title, 
+    image: @thank_you_page.header_image 
+} %>
+<section class="page-section-ptb home_about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class=" text-center">
+                    <h2 class="pb-4"><%= @thank_you_page.payment_thankyou_page_title %></h2>
+                    <%= @thank_you_page.payment_thankyou_page_body.html_safe %>
+
+                    <div>
+                        <a class="button text-white" href="/BusinessDevelopmentKit-2.zip">Download Business Kit</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<% end %>
+
+<%= render partial: 'layouts/footer' %>

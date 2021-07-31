@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service: one
+  name: MyString
+  mobile_no: MyString
+
+two:
+  service: two
+  name: MyString
+  mobile_no: MyString

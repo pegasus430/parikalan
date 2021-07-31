@@ -1,0 +1,200 @@
+<style>
+
+.calc,.calc2 {
+    border-spacing: 0;
+    border-collapse: separate;
+    background: #0072b1;
+    border: 1px #ddd solid;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    color: white;
+}
+
+table.calc td,.calc2 td {
+    padding: 9px;
+    border-width: 0;
+    border-style: none;
+    background: #0072b1
+}
+
+.calc2 select {
+    padding: 4px 2px;
+    font-size: 1.2em;
+    font-family: Arial,Helvetica,sans-serif
+}
+
+@media only screen and (max-width: 576px) {
+    .calc2 {
+        padding:8px;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .calc2 td {
+        float: left
+    }
+
+    .calc2 td:nth-child(2) {
+        clear: left
+    }
+
+    .calc2 tr td:nth-child(3) {
+        padding-top: 10px
+    }
+
+    .calc2 input[type=text],.calc2 input[type=number],.calc2 input[type=url] {
+        width: 190px;
+        font-size: x-large;
+        padding-left: 3px
+    }
+
+    .calc2 tr td:nth-child(3) select {
+        margin-top: -8px
+    }
+}
+
+@media only screen and (min-width: 577px) {
+    .calc2 {
+        padding:50px;
+    }
+
+    .calc2 tr {
+        /* line-height: 40px */
+    }
+
+    .calc2 input[type=text],.calc2 input[type=number],.calc2 input[type=url] {
+        width: 220px;
+        font-size: 15px;
+        padding: 7px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+    .sm-mt-30 {
+        margin-top: 30px;
+    }
+
+} 
+
+</style>
+
+
+<section class="page-section-ptb home_about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+
+            <form name="calcform" autocomplete="off">
+            <table class="calc2">
+                <tr style="display:none;">
+                    <td>Country:</td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <select name="Select1" onchange="OnCountryChange()">
+                        <option>Australia</option>
+                        <option>Canada</option>
+                        <option>Hong Kong</option>
+                        <option selected="selected">India</option>
+                        <option>Malaysia</option>
+                        <option>New Zealand</option>
+                        <option>Singapore</option>
+                        <option>- other country -</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Initial Amount:</td>
+                    <td class="math" id="cur1" style="font-weight: bold;">Rs.</td>
+                    <td class="math">
+                        <input id="Text1" name="Text1" type="number" class="intext" style="width:130px">
+                        <button type="button" class="btn" onclick="OnClear()">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Rate of GST:</td>
+                    <td class="math">&nbsp;</td>
+                    <td class="math"><input id="Text2" name="Text2" type="number" class="intext" style="width:130px" value="20"> %</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="padding-left: 7px;">
+                        <button type="button" title="Add GST" class="btn" onclick="OnCalcGST(1)"><i class="fa fa-plus" aria-hidden="true"></i> Add GST</button>
+                        <button type="button" title="Subtract GST" class="btn" onclick="OnCalcGST(0)"><i class="fa fa-minus" aria-hidden="true"></i> Subtract GST</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Net Amount:</td>
+                    <td class="math" id="cur2" style="font-weight: bold;">Rs.</td>
+                    <td class="math"><input id="Text5" name="Text5" type="text" class="outtext" style="width:130px" readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <td>GST Amount:</td>
+                    <td class="math" id="cur3" style="font-weight: bold;">Rs.</td>
+                    <td class="math"><input id="Text6" name="Text6" type="text" class="outtext" style="width:130px" readonly="readonly"></td>
+                </tr>
+                <tr>
+                    <td>Gross Amount:</td>
+                    <td class="math" id="cur4" style="font-weight: bold;">Rs.</td>
+                    <td class="math"><input id="Text7" name="Text7" type="text" class="outtext" style="width:130px" readonly="readonly"></td>
+                </tr>
+            </table>
+            </form>
+
+
+            </div>
+            <div class="col-lg-6 sm-mt-30">
+                <%= render partial: 'calculators/gst_calculator/all_calculators_side_bar' %>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+function OnClear() {
+    document.getElementById("Text1").value = '';
+    document.getElementById("Text5").value = '';
+    document.getElementById("Text6").value = '';
+    document.getElementById("Text7").value = '';
+}
+
+function OnCountryChange() {
+    gst_look = [10, 5, 5, 13.5, 6, 15, 7, ''];
+    c_look = ['$', '$', '$', 'R', 'RM', '$', '$', ''];
+    i = document.calcform.Select1.selectedIndex;
+    c = c_look[i];
+    document.getElementById("cur1").innerHTML = c;
+    document.getElementById("cur2").innerHTML = c;
+    document.getElementById("cur3").innerHTML = c;
+    document.getElementById("cur4").innerHTML = c;
+    document.getElementById("Text2").value = gst_look[i];
+}
+
+function OnCalcGST(op) {
+    i = document.calcform.Select1.selectedIndex;
+    amount = document.calcform.Text1.value;
+    if (amount == '') amount = '0';
+    amount = parseFloat(amount);
+    gst = document.calcform.Text2.value;
+    if (gst == '') gst = '0';
+    gst = parseFloat(gst);
+    if (op == 1) {
+        net_amount = amount;
+        gst_amount = amount * gst / 100;
+        gross_amount = parseFloat(net_amount) + parseFloat(gst_amount);
+    } else {
+        gross_amount = amount;
+        net_amount = 100 * amount / (100.0 + parseFloat(gst));
+        gst_amount = parseFloat(gross_amount) - parseFloat(net_amount);
+    }
+    net_amount = net_amount.toFixed(2);
+    gst_amount = gst_amount.toFixed(2);
+    gross_amount = gross_amount.toFixed(2);
+    document.calcform.Text5.value = net_amount;
+    document.calcform.Text6.value = gst_amount;
+    document.calcform.Text7.value = gross_amount;
+}
+</script>

@@ -1,0 +1,21 @@
+<% Service.where(show_on_homepage: true).each_with_index do |s, idx| %>
+<div class="tab-pane fade <%= " active" if idx==0 %> show" id="service-0
+    <%= idx +1 %>" role="tabpanel" aria-labelledby="service-0
+    <%= idx +1 %>-tab">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 mb-60">
+            <ul class="price">
+                <% s.price_plans.all.each do |p| %>
+                <li class="header"><%= p.name %></li>
+                <li class="grey">₹ <%= p.price %> </li>
+                <li>Contrary to popular belief, Lorem
+                    is not simply random text. It has ro
+                    a piece of classical Latin literature
+                    up one of the more obscure Latin</li>
+                <li class="grey"><a href="#" class="button">Sign Up</a></li>
+                <% end %>
+            </ul>
+        </div>
+    </div>
+</div>
+<% end %>

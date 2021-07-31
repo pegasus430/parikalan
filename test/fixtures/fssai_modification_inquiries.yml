@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_of_modification: MyString
+  applicant_name: MyString
+  email: MyString
+  phone: MyString
+  food_items_want_to_add: MyString
+
+two:
+  type_of_modification: MyString
+  applicant_name: MyString
+  email: MyString
+  phone: MyString
+  food_items_want_to_add: MyString

@@ -1,0 +1,2 @@
+class HomePagePopup < ApplicationRecord
+end

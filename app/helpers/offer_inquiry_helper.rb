@@ -1,0 +1,2 @@
+module OfferInquiryHelper
+end

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cupon_type: 1
+  percentage_off: 1
+  max_percentage_off_amount: 1
+  amount_off: 1
+  min_purchase_amount: 1
+  valid_till: 2021-03-12
+  max_number_of_clients: 1
+
+two:
+  cupon_type: 1
+  percentage_off: 1
+  max_percentage_off_amount: 1
+  amount_off: 1
+  min_purchase_amount: 1
+  valid_till: 2021-03-12
+  max_number_of_clients: 1

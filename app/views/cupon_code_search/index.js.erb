@@ -1,0 +1,10 @@
+$("#message_from_cupon_code").html('<%= @message.html_safe %>');
+<% if @dicount_amount %>
+	$("#discount_amount").val(<%= @dicount_amount %>);
+	$("#cupon_code_id").val(<%= @code_object.id %>);
+	currentDicountAmount = <%= @dicount_amount %>;
+	currentDicountCode = "<%= @code %>";
+<% else %>
+	currentDicountAmount = undefined;
+	currentDicountCode = undefined;
+<% end %>

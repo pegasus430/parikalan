@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_of_business_firm: MyString
+  address_of_business_firm: MyString
+  nature_business_firm: MyString
+  services_to_be_sell_in_gem: MyString
+  owner_name: MyString
+  owner_aadhar_number: MyString
+  type_of_firm: MyString
+  email: MyString
+  phone: MyString
+  account_holder_name: MyString
+  account_number: MyString
+  ifsc_code: MyString
+  date: MyString
+  income_tax_return: MyString
+
+two:
+  name_of_business_firm: MyString
+  address_of_business_firm: MyString
+  nature_business_firm: MyString
+  services_to_be_sell_in_gem: MyString
+  owner_name: MyString
+  owner_aadhar_number: MyString
+  type_of_firm: MyString
+  email: MyString
+  phone: MyString
+  account_holder_name: MyString
+  account_number: MyString
+  ifsc_code: MyString
+  date: MyString
+  income_tax_return: MyString

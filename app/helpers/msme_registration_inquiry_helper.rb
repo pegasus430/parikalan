@@ -1,0 +1,2 @@
+module MsmeRegistrationInquiryHelper
+end

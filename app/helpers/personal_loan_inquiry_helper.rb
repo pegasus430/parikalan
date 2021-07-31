@@ -1,0 +1,2 @@
+module PersonalLoanInquiryHelper
+end

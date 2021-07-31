@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service: one
+  price_plan: one
+  payment_ref: MyString
+  name: MyString
+  phone: MyString
+  email: MyString
+  cupon_code: one
+
+two:
+  service: two
+  price_plan: two
+  payment_ref: MyString
+  name: MyString
+  phone: MyString
+  email: MyString
+  cupon_code: two

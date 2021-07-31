@@ -1,0 +1,27 @@
+<section class="about page-section-ptb home_about">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-8">
+                <div class="section-title text-center">
+                    <h2 class="title-effect">How to Register </h2>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <% RegisterStep.all.each do |r| %>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="feature-text round theme-icon text-center xs-mb-30">
+                    <div class="feature-icon">
+                       <img src="<%= r.icon %>" style="background: #0072b1; padding:20px; width: 80px;">
+                    </div>
+                    <div class="feature-info">
+                        <h4 class="pb-10"><%= r.title %></h4>
+                        <%= r.description.html_safe %>
+                    </div>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</section>

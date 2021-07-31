@@ -1,0 +1,109 @@
+<style type="text/css">
+	
+	.title-effect {
+		z-index: 0;
+	}
+
+</style>
+
+<%= render partial: 'layouts/header' %>
+
+<% cache get_cache_key(@service) do %>
+
+<%= render partial: 'subheader' %>
+<%= render partial: 'register' %>
+<% if !@service.custom_form_name.blank? %>
+	<%= render partial: @service.custom_form_name %>
+<% else %>
+	<%= render partial: 'tab' %>
+	<%= render partial: 'grid_detail' %>
+	<%= render partial: 'price' %>
+<% end %>
+<%= render partial: 'shared/testimonial' %>
+<%= render partial: 'shared/client' %>
+<%= render partial: 'layouts/feature' %>
+
+<% end %>
+
+<%= render partial: 'layouts/footer' %>
+<%= render partial: 'price_modal' %>
+
+<script>
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+	
+document.addEventListener("DOMContentLoaded", function(event) { 
+
+	$(".custom_form_payment_button").click(
+		function(event) {
+			event.preventDefault();
+
+			let formIDToBeSubmitted = $(this).data('formidtosubmit');
+			let amountToBePaid = $(".custom_form_payment_button").first().attr('data-amount');
+
+			if ( $("#" + formIDToBeSubmitted)[0].checkValidity() == false ) {
+				$("#" + formIDToBeSubmitted)[0].reportValidity();
+				return;
+			}
+
+			
+			if ( amountToBePaid != "" ) {
+
+
+	            let dataobject = getFormData( $('#' + formIDToBeSubmitted) );
+
+	            new Noty({
+	              type: 'success',
+	              timeout: 10000,
+	              layout: 'center',
+	              text: 'Please Wait. We Are Processing Your Request.',
+	            }).show();
+
+	            
+	            $.ajax({
+	              type: "POST",
+	              url: $('#' + formIDToBeSubmitted).attr('action'),
+	              data: dataobject,
+	              success: function(idOfCreatedObject) {
+
+					let amountToPayAsString = $(".custom_form_payment_button").first().attr('data-amount');
+					let amountInPaise = parseInt(amountToPayAsString) * 100;
+
+					let name = $(paymentSettingsObject.nameSelector).val();
+					let email = $(paymentSettingsObject.emailSelector).val();
+					let phone = $(paymentSettingsObject.phoneSelector).val();
+					let item = paymentSettingsObject.purchasedItem;
+					let model = paymentSettingsObject.model;
+
+					const params = new URLSearchParams({
+						name: name,
+						phone: phone,
+						email: email,
+						i: item,
+						amt: amountToPayAsString,
+						model: model,
+						id: idOfCreatedObject
+					});
+
+					window.location.replace("/plan_payment/new?" + params.toString());
+
+	              }
+	            });
+
+			} else {
+				$("#" + formIDToBeSubmitted).submit();
+			}
+		}
+	);
+
+});
+</script>

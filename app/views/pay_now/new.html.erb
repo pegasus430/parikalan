@@ -1,0 +1,294 @@
+<style type="text/css">
+    
+    .middle_block {
+        border: 1px solid #0072b1;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    }
+
+</style>
+
+<%= render partial: 'layouts/header' %> <%= render partial: 'shared/subheader', locals: { title: pay_now_page.header_title, image: pay_now_page.header_image } %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+
+        <div class="col-sm-6 mb-5 mt-5">
+            <div class="middle_block">
+                <form 
+                    action=""
+                    id="payment_form"
+                    method="post" 
+                    style="padding: 0px 30px 20px;"
+                >
+                    <%= recaptcha_action('form_fill') %>
+
+                    <h4 style="color: #0072b1;">
+                        Please Fill Your Details Below
+                    </h4>
+
+                    <div class="form-group">
+                        <input 
+                            type="name" 
+                            class="form-control" 
+                            id="name" 
+                            required="true" 
+                            name="name" 
+                            placeholder="Enter Your Name" 
+                            value="<%= @name %>" 
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            name="phone" 
+                            required="true" 
+                            id="phone"
+                            value="<%= @phone %>" 
+                            placeholder="Phone" 
+                            pattern="\d{10}" />
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            class="form-control" 
+                            name="email" 
+                            required="true" 
+                            id="email" 
+                            placeholder="Email" 
+                            value="<%= @email %>" 
+                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                    </div>
+
+                    <div class="form-group">
+                        <input 
+                            type="number" 
+                            class="form-control"
+                            name="amount_to_pay"
+                            id="amount_to_pay"
+                            required="true" 
+                            placeholder="Amount To Pay"
+                            value="" />
+                    </div>
+
+                    <div class="form-group">
+                        <textarea 
+                            class="form-control input-message" 
+                            placeholder="Enter Comment/Message" 
+                            rows="7"
+                            id="message"
+                            required="true"
+                            name="message" 
+                            spellcheck="false"></textarea>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            id="coupon_code" 
+                            placeholder="Enter In A Coupon Code" />
+                            <p style="margin-top: 20px;" id="message_from_cupon_code"></p>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-2">
+                        </div>
+
+                        <div class="col-sm-8">
+
+                              <table class="table table-1 mb-3">
+                                <tbody>
+                                  <tr>
+                                    <td><b>Amount</b></td>
+                                    <td>₹<span id="base_amount">0</span></td>
+                                  </tr>
+
+                                  <tr id="dicount_line" style="display: none;">
+                                    <td><b>- <span id="dis_code"></span> CODE</b></td>
+                                    <td>₹<span id="dis_amt">0</span></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><b>+ 18% GST</b></td>
+                                    <td>₹<span id="gst_amt"></span></td>
+                                  </tr>
+
+                                  <tr>
+                                    <td><b>Total Payable Amount</b></td>
+                                    <td>₹<span id="total_amt"></span></td>
+                                  </tr>
+                                </tbody>
+                              </table>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="text-center">
+
+                        <button type="submit" class="btn btn" style="background: #0072b1; color: white;" id="pay_now">
+                            <i class="fa fa-paper-plane-o"></i> Pay Now
+                        </button>
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%= render partial: 'layouts/footer' %>
+
+
+<script type="text/javascript">
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    function callRPModal(amount_in_paise) {
+
+        let prePaymentDataObject = {
+            name: $("#name").val(),
+            phone: $("#phone").val(),
+            email: $("#email").val(),
+            amount_paid: amount_in_paise / 100,
+            message: $("#message").val(),
+            new_recaptcha_token: $('input[name="new_recaptcha_token"]').val(),
+            coupon_code: $("#coupon_code").val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: '<%= custom_payment_index_path %>',
+            data: prePaymentDataObject,
+            success: function(data) {
+                let theIDOfThePayment = data;
+
+                let options = {
+                    "key": "<%= general_settings.razor_pay_key %>",
+                    "amount": amount_in_paise,
+                    "handler": function(response) {
+
+                        let dataobject = {
+                            payment_ref: response.razorpay_payment_id,
+                            authenticity_token: '<%= form_authenticity_token %>'
+                        };
+
+                        $.ajax({
+                            type: "PUT",
+                            url: '/custom_payment/' + theIDOfThePayment,
+                            data: dataobject,
+                            success: function() {
+                                new Noty({
+                                    type: 'success',
+                                    timeout: 3000,
+                                    text: 'Your payment has been recieved. We will be in touch soon!',
+                                }).show();
+                                window.location.replace("<%= thank_you_path(type: 'payment') %>");
+                            }
+                        });
+
+                    },
+                    "prefill": {
+                        "name": $("#name").val(),
+                        "contact": $("#phone").val(),
+                        "email": $("#email").val()
+                    }
+                };
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+
+            }
+        });
+
+    }
+
+    $("#payment_form").submit(
+        function(event) {
+            event.preventDefault();
+
+            new Noty({
+                type: 'success',
+                timeout: 10000,
+                layout: 'center',
+                text: 'Please Wait As We Connect The The Payment Gateway! It may take a few seconds.',
+            }).show();
+
+            let netAmountToBePaid = parseInt($("#total_amt").text());
+            let netAmountToPayInPaise = netAmountToBePaid * 100;
+            callRPModal(netAmountToPayInPaise);
+        }
+    );
+
+});
+
+</script>
+
+
+
+
+
+
+<script>
+let currentDicountAmount = undefined;
+let currentDicountCode = undefined;
+
+
+function syncInvoice(base_amount) {
+    let dicountAmount = parseFloat( $("#dis_amt").text() );
+    let amountWithDiscount = base_amount - dicountAmount;
+    let gstAmount = (amountWithDiscount * 0.18);
+    $("#gst_amt").text(gstAmount.toFixed(2));
+    let totalPayableAmount = amountWithDiscount + gstAmount;
+    $("#total_amt").text(totalPayableAmount);
+}
+
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    $("#coupon_code").on('change keyup paste', function() {
+
+        let amountToBePaid = $("#base_amount").text();
+
+        let url = `/cc_search?code=${$(this).val()}&amount=${amountToBePaid}&authenticity_token=${$('#authenticity-token').attr('content')}`;
+        
+        $.get(url, function(data) {
+            eval(data);
+            if (currentDicountAmount) {
+                $("#dicount_line").show('slow');
+                $("#dis_code").text(currentDicountCode);
+                $("#dis_amt").text(currentDicountAmount);
+            }
+            else {
+                $("#dicount_line").hide('slow');
+                $("#dis_code").text('');
+                $("#dis_amt").text('0');
+            }
+            syncInvoice(amountToBePaid);
+        });
+    
+    });
+
+    syncInvoice(0);
+
+
+    $("#amount_to_pay").on('change keyup paste', function() {
+
+        $("#base_amount").text( $("#amount_to_pay").val() );
+        syncInvoice($("#amount_to_pay").val());
+    
+    });
+
+
+});
+</script>

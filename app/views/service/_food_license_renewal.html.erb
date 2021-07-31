@@ -1,0 +1,199 @@
+<section class="two-side space bg-gray mb-5">
+    <div class="container text-center">
+        <div class="section-heading pb-5">
+            <h2>Food License Renewal Registration Form<span class="heading_divider"> </span> </h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+            <% unless @service.form_instruction.blank? %>
+            <div class="col-md-7">
+                <% else %>
+                <div class="col-md-12">
+                    <% end %>
+                    <div class="col-left">
+                        <div class="left-header">
+                            <h2>Registration Form</h2>
+                        </div>
+                        <div class="left-data">
+                            <form 
+                                class="custom-form custom_form_submit" 
+                                data-success-id="success_message_1" 
+                                action="<%= fssai_renewal_inquiry_index_path %>" 
+                                method="post" 
+                                name="contactform" 
+                                data-success-msg="Thank you! We will be in touch soon!" 
+                                id="cf_food_license_renewal">
+
+                                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                                
+                                <%= recaptcha_action('form_fill') %>
+                                
+                                <div class="form-group">
+                                    <label>Select Type of Renewal *</label><br>
+                                    <label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="License" name="type_of_renewal" id="type_of_renewal" checked> License
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="Registration" name="type_of_renewal" id="type_of_renewal"> Registration
+                                    </label>
+                                    <div id="error_trds" class="error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="text-left">Organization Name *</label>
+                                    <input type="text" class="form-control" name="organization_name" id="organization_name" value="" required="true" maxlength="12" onkeypress="return isNumberKey(event)">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Applicant Name *</label>
+                                    <input type="text" class="form-control" required="true" name="applicant_name" id="applicant_name" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Email*</label>
+                                    
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        required="true"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                        name="email" 
+                                        id="email" 
+                                        value="" 
+                                        maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Mobile Number*</label>
+                                    
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        pattern="\d{10}" 
+                                        required="true" 
+                                        name="phone" 
+                                        id="phone" 
+                                        value="" 
+                                        maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Registration/License Number*</label>
+                                    <input type="text" class="form-control" required="true" name="license_number" id="license_number" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left"> Tenure *</label>
+                                    <select class="form-control" name="tenure" id="registration_tenure">
+                                        <option 
+                                        value="" 
+                                        disabled="" 
+                                        selected="">Select Tenure</option>
+                                        
+                                        <option 
+                                        value="1 Year" 
+                                        data-calc-value="1 Year"
+                                        data-lp="1599"
+                                        data-hp="7999"
+                                        >1 Year </option>
+                                        
+                                        <option 
+                                        value="2 Years" 
+                                        data-calc-value="2 Years"
+                                        data-lp="1999"
+                                        data-hp="9999"
+                                        >
+                                        2 Years </option>
+                                        
+                                        <option 
+                                        value="3 Years" 
+                                        data-calc-value="3 Years"
+                                        data-lp="2599"
+                                        data-hp="11999"
+                                        >
+                                        3 Years </option>
+                                        
+                                        <option 
+                                        value="4 Years" 
+                                        data-calc-value="4 Years"
+                                        data-lp="2999"
+                                        data-hp="13999"
+                                        >
+                                        4 Years </option>
+                                        
+                                        <option 
+                                        value="5 Years" 
+                                        data-calc-value="5 Years"
+                                        data-lp="3599"
+                                        data-hp="15999"
+                                        >
+                                        5 Years </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="submit" 
+                                        class="btn btn-primary custom_form_payment_button" 
+                                        id="fsai_form_submit_button"
+                                        data-formidtosubmit="cf_food_license_renewal"
+                                        value="<%= @service.custom_form_button_text.blank? ? "Submit" : @service.custom_form_button_text %>"
+                                        data-amount=""
+                                    >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% unless @service.form_instruction.blank? %>
+                <div class="col-md-5">
+                    <div class="col-right">
+                        <div class="right-header">
+                            <h2>Instructions</h2>
+                        </div>
+                        <div class="right-data">
+                            <%= @service.form_instruction.html_safe %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+</section>
+
+
+<script type="text/javascript">
+    
+let paymentSettingsObject = {
+    nameSelector: '#applicant_name',
+    emailSelector: '#email',
+    phoneSelector: '#phone',
+    purchasedItem: 'Food License Renewal',
+    model: 'FssaiRenewalInquiry'
+};
+
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+   
+    function setPrice() {
+        let val = $("input[name=type_of_renewal]:checked").val();
+        if ( val == "Registration" ) {
+            $("#fsai_form_submit_button").attr('data-amount',  $("#registration_tenure option:selected").data('lp') );
+        }
+        else {
+            $("#fsai_form_submit_button").attr('data-amount',  $("#registration_tenure option:selected").data('hp') );
+        }
+    }
+
+    $("#registration_tenure").change(
+        function () {
+            setPrice();
+        }
+    );
+
+    $("input[name=type_of_renewal]:radio").change(
+        function () {
+            setPrice();
+        }
+    );
+
+    setPrice();
+
+});
+</script>

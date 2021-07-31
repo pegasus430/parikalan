@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  header_image: MyString
+  header_title: MyString
+  about_section_image: MyString
+  about_section_title: MyString
+  about_section_subtitle: MyString
+  about_section_description: MyText
+  usp_icon_1: MyString
+  usp_title_1: MyString
+  usp_description_1: MyString
+  usp_icon_2: MyString
+  usp_title_2: MyString
+  usp_description_2: MyString
+  usp_icon_3: MyString
+  usp_title_3: MyString
+  usp_description_3: MyString
+  history_section_title: MyString
+  history_section_subtitle: MyString
+  seo_title: MyString
+  seo_keyword: MyString
+  seo_description: MyString
+
+two:
+  header_image: MyString
+  header_title: MyString
+  about_section_image: MyString
+  about_section_title: MyString
+  about_section_subtitle: MyString
+  about_section_description: MyText
+  usp_icon_1: MyString
+  usp_title_1: MyString
+  usp_description_1: MyString
+  usp_icon_2: MyString
+  usp_title_2: MyString
+  usp_description_2: MyString
+  usp_icon_3: MyString
+  usp_title_3: MyString
+  usp_description_3: MyString
+  history_section_title: MyString
+  history_section_subtitle: MyString
+  seo_title: MyString
+  seo_keyword: MyString
+  seo_description: MyString

@@ -1,0 +1,75 @@
+<section class="blog blog-single white-bg page-section-ptb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="blog-entry mb-10">
+                    <div class="entry-image clearfix">
+                        <img class="img-fluid" src="<%= @blog.image %>" alt="">
+                    </div>
+                    <div class="blog-detail">
+                        <div class="entry-meta mb-10">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-calendar-o"></i> <%= @blog.date %></a></li>
+                            </ul>
+                        </div>
+                        <div class="entry-content">
+                           <%= @blog.long_description.html_safe %>
+                            <div class="social list-style-none float-right">
+                                    <strong>Share : </strong>
+                                    <ul>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-facebook"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-twitter"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-pinterest-p"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"> <i class="fa fa-dribbble"></i> </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-lg-3">
+                <div class="sidebar-widget">
+                    <h6 class="mt-40 mb-20">Recent Posts </h6>
+                    <% Blog.all.each do |b| %>
+                        <div class="recent-post clearfix">
+                            <div class="recent-post-image">
+                                <img class="img-fluid" src="<%= b.image.thumb %>" alt="">
+                            </div>
+                            <div class="recent-post-info">
+                                <a href="<%= blog_detail_path(slug: b.url_slug)%>"><%= b.name %></a>
+                                <span><i class="fa fa-calendar-o"></i> <%= b.date %></span>
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+                
+                <div class="sidebar-widget">
+                    <h6 class="mt-40 mb-20">Quick contact</h6>
+                    <form class="gray-form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="4" placeholder="message"></textarea>
+                        </div>
+                        <a class="button" href="#">Submit</a>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

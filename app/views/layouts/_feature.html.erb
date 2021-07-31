@@ -1,0 +1,19 @@
+<section class="white-bg page-section-ptb home_about">
+    <div class="container-fluid">
+        <div class="row">
+            <% Feature.all.each do |f| %>
+                <div class="col-lg-3 col-sm-6 border-right pl-0 pl-sm-40">
+                    <div class="feature-text p-4">
+                        <div class="feature-icon">
+                            <img src="<%= f.icon %>">
+                        </div>
+                        <div class="feature-info">
+                            <h5><%= f.title %></h5>
+                            <p><%= f.description.html_safe %> </p>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>

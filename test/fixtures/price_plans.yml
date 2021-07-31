@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  price: MyString
+  duration: MyString
+  show_on_homepage: false
+
+two:
+  name: MyString
+  price: MyString
+  duration: MyString
+  show_on_homepage: false

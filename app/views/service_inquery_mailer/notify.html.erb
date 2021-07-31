@@ -1,0 +1,29 @@
+<%= GeneralSetting.first.email_header_text.html_safe %>
+<table>
+   <% @new_record_that_was_created.class.column_names.each do |column_name| %>
+   <% next if column_name == "id" || column_name == "created_at" || column_name == "updated_at" %>
+   <% next if @new_record_that_was_created.send(column_name.to_sym).blank? %>
+   <% 
+      if column_name.ends_with?("_id")
+        column_name = column_name.gsub("_id", "")
+      end 
+      %>
+   <tr>
+      <td><%= column_name.gsub("_", " ").titleize %></td>
+      <td>
+         <% 
+            if !@new_record_that_was_created.class.columns_hash[column_name].nil? && @new_record_that_was_created.class.columns_hash[column_name].type == :time
+            %>
+         <%= @new_record_that_was_created.send(column_name.to_sym).strftime("%l:%M %p") %>
+         <% 
+            else
+            %>
+         <%= @new_record_that_was_created.send(column_name.to_sym).to_s %>
+         <%
+            end 
+            %>
+      </td>
+   </tr>
+   <% end %>
+</table>
+<%= GeneralSetting.first.email_footer_text.html_safe %>

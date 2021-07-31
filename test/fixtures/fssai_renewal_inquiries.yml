@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_of_renewal: MyString
+  organization_name: MyString
+  applicant_name: MyString
+  email: MyString
+  phone: MyString
+  license_number: MyString
+  tenure: MyString
+
+two:
+  type_of_renewal: MyString
+  organization_name: MyString
+  applicant_name: MyString
+  email: MyString
+  phone: MyString
+  license_number: MyString
+  tenure: MyString

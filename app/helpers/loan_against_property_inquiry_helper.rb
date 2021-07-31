@@ -1,0 +1,2 @@
+module LoanAgainstPropertyInquiryHelper
+end

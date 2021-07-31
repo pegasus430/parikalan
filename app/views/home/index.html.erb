@@ -1,0 +1,14 @@
+<%= render partial: 'layouts/header' %>
+<% cache get_cache_key(home_page) do %>
+	<%= render partial: 'slider' %>
+	<%= render partial: 'about' %>
+	<%= render partial: 'tab' %>
+	<%= render partial: 'why_choose_us' %>
+	<%= render partial: 'shared/client' %>
+	<%= render partial: 'shared/stats' %>
+	<%= render partial: 'shared/testimonial' %>
+	<%= render partial: 'layouts/feature' %>
+<% end %>
+<%= render partial: 'layouts/footer' %>
+
+

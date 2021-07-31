@@ -1,0 +1,165 @@
+<div class="modal fade" id="priceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header pt-3">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body" style="padding: 0px 30px 30px;">
+            <form action="" method="post" style="padding: 0px 30px 20px;" id="modal_form">
+               
+               <%= recaptcha_action('form_fill') %>
+
+               <input type="hidden" name="razorpay_transcation_id" id="razorpay_transcation_id" value="">
+               
+               <input type="hidden" name="amount" id="amount_to_pay" value="">
+               
+               <input type="hidden" name="discount_amount" id="discount_amount" value="0">
+               
+               <input type="hidden" name="price_plan_id" id="price_plan_id" value="">
+               
+               <input type="hidden" name="cupon_code_id" id="cupon_code_id" value="">
+               
+               <h4 style="color: #0072b1;">Get Started With <span id="plan_name_span"></span>!</h4>
+               
+               <div class="form-group">
+                  <input type="name" class="form-control" id="name" required="true" name="name" placeholder="Enter Your Name">
+               </div>
+               
+               <div class="form-group">
+                  <input type="text" class="form-control" name="phone" required="true" id="phone" placeholder="Phone" pattern="\d{10}">
+               </div>
+               
+               <div class="form-group">
+                  <input type="email" class="form-control" name="email" required="true" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+               </div>
+               
+               <div class="form-group">
+                  <input type="text" class="form-control" id="coupon_code" placeholder="Enter In A Coupon Code">
+                  <p style="margin-top: 20px;" id="message_from_cupon_code">
+                  </p>
+               </div>
+
+               <button type="submit" class="btn btn pull-left" style="background: #0072b1; color: white;" id="pay_now">
+                  Pay Now
+               </button>
+
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+
+   // $(".plan_button").click(
+   //    function() {
+   //       let amount = $(this).data('amount');
+   //       let planName = $(this).data('plan');
+   //       $("#plan_name_span").text(planName);
+   //       $("#amount_to_pay").val(amount);
+   //       $("#price_plan_id").val($(this).data('planid'));
+   //       amountToBePaid = amount;
+   //       $("#priceModal").modal();
+   //    }
+   // );
+
+   $("#coupon_code").on('change keyup paste', function () {
+     let url = `/cc_search?code=${$(this).val()}&amount=${amountToBePaid}&authenticity_token=${$('#authenticity-token').attr('content')}`;
+     $.get(url, function(data){
+         eval(data);
+     });
+   });
+
+});
+</script>
+
+
+
+<script type="text/javascript">
+function callRPModal(amount_in_paise) {
+
+    let prePaymentDataObject = {
+        name: $("#name").val(),
+        phone: $("#phone").val(),
+        email: $("#email").val(),
+        service_id: <%= @service.id %>,
+        price_plan_id: $("#price_plan_id").val(),
+        cupon_code_id: $("#cupon_code_id").val(),
+        amount: amount_in_paise / 100,
+        authenticity_token: '<%= form_authenticity_token %>',
+        new_recaptcha_token: $('.modal input[name="new_recaptcha_token"]').val()
+    }
+    $.ajax({
+      type: "POST",
+      url: '/payments',
+      data: prePaymentDataObject,
+      success: function( data ) {
+        let theIDOfThePayment = data;
+
+        let options = {
+             "key": "<%= general_settings.razor_pay_key %>",
+             "amount": amount_in_paise,
+             "handler": function(response) {
+                let dataobject = {
+                    payment_ref: response.razorpay_payment_id,
+                    authenticity_token: '<%= form_authenticity_token %>'
+                };
+                
+                $.ajax({
+                  type: "PUT",
+                  url: '/payments/' + theIDOfThePayment,
+                  data: dataobject,
+                  success: function() {
+                    new Noty({
+                      type: 'success',
+                      timeout: 3000,
+                      text: 'Your payment has been recieved. We will be in touch soon!',
+                    }).show();
+                    $("#priceModal").modal('hide');
+                    window.location.replace("<%= thank_you_path(type: 'payment') %>");
+                  }
+                });
+
+             },
+             "prefill": {
+               "name": $("#full_name").val(),
+               "contact": $("#phone").val(),
+               "email": $("#email").val()
+             }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+
+      }
+    });
+
+}
+
+
+document.addEventListener("DOMContentLoaded", function(){
+
+    $("#modal_form").submit(
+        function(event) {
+            event.preventDefault();
+
+
+            new Noty({
+              type: 'success',
+              timeout: 10000,
+              layout: 'center',
+              text: 'Please Wait As We Connect The The Payment Gateway! It may take a few seconds.',
+            }).show();
+
+
+            let netAmountToBePaid = parseInt($("#amount_to_pay").val()) - parseInt($("#discount_amount").val());
+            let netAmountToPayInPaise = netAmountToBePaid * 100;
+            callRPModal(netAmountToPayInPaise);
+        }
+    );
+
+});
+
+</script>

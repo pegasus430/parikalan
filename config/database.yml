@@ -1,0 +1,23 @@
+development:
+  adapter: mysql2
+  database: parikalan_development
+  encoding: utf8
+  username: root
+  password: P@ssw0rd
+  host: localhost
+
+test: &test
+  adapter: mysql2
+  database: parikalan_test
+  encoding: utf8
+  username: root
+  password: P@ssw0rd
+  host: localhost
+
+production:
+  adapter: mysql2
+  database: parikalan_production
+  encoding: utf8
+  username: root
+  password: P@ssw0rd
+  host: localhost

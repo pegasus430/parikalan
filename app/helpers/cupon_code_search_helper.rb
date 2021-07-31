@@ -1,0 +1,2 @@
+module CuponCodeSearchHelper
+end

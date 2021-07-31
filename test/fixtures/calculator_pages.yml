@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  header_image: MyString
+  header_title: MyString
+  calculators_title: MyString
+
+two:
+  header_image: MyString
+  header_title: MyString
+  calculators_title: MyString

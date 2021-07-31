@@ -1,0 +1,26 @@
+<section class="faq white-bg" id="faqs" style="margin-bottom: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <% unless @service.faq_title.blank? %>
+                <h2>
+                    <%= @service.faq_title %>
+                </h2>
+                <% else %>
+                <h2>FAQs</h2>
+                <% end %>
+                <div class="accordion shadow">
+                    <% @service.service_faqs.each_with_index do |f, idx| %>
+                    <div class="acd-group <%= " acd-active" if idx==0 %>">
+                        <a href="#" class="acd-heading">
+                            <%= f.question %></a>
+                        <div class="acd-des list list-unstyled list-mark">
+                            <%= f.answer.html_safe %>
+                        </div>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

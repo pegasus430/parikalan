@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="authenticity-token" id="authenticity-token" content="<%= form_authenticity_token %>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="<%= seo_keywords %>" />
+    <meta name="description" content="<%= seo_description %>" />
+    <meta property="og:title" content="<%= seo_title %>" />
+    <meta property="og:description" content="<%= seo_description %>" />
+
+    <% if controller_name == "loan_calculator" %>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.min.js"></script>
+    <% end %>
+
+    <%= include_recaptcha_js %>
+
+    <title>
+        <%= seo_title %>
+    </title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+
+    <style type="text/css">
+        <%= render partial: 'layouts/critical_css' %>
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4DG0GG7QM"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Y4DG0GG7QM');
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Ads: 479787209 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-479787209"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-479787209');
+    </script>
+
+<!--
+    THIS IS THE CRITICAL CSS THAT IS INLINED ABOVE 
+    <link rel="stylesheet" type="text/css" href="/css/plugins/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/mega_menu.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/page-title.css" />
+    <link rel="stylesheet" type="text/css" href="/css/typography.css" />
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="/custom.css">
+-->
+
+    <% if mobile? %>
+    <link rel="stylesheet" type="text/css" href="/css/responsive.css" />
+    <% end %>
+
+<!-- 
+    THIS IS THE NON CRITICAL CSS THAT WE ARE BIGNING IN AT THE BOTTOM AFTER ALL OTHER THINGS ARE LOADED 
+    <link rel="stylesheet" type="text/css" href="/css/plugins/animate.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800">
+    <link rel="stylesheet" type="text/css" href="/css/plugins/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/magnific-popup.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/mediaelementplayer.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/owl.carousel.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/slick-theme.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/themify-icons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/plugins/fullcalendar.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/LeaVerou/awesomplete/awesomplete.css">
+    <link rel="stylesheet" type="text/css" href="/revolution/css/settings.css" media="screen" /> 
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/accordion.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/action-box.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/blockquote.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/bootstrap-typography.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/button.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/clients.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/contact-form.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/countdown.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/counter.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/divider.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/dropcap.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/feature-text.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/list-style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/nice-select.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/owl-carousel.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/pie-chart.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/pricing.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/progress-bar.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/section-title.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/social-icons.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/team.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/testimonial.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/side-panel.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcodes/onload-modal.css" />
+ -->
+
+</head>
+<body>
+    <div class="wrapper">
+<!--         <div id="pre-loader">
+            <img src="images/pre-loader/loader-01.svg" alt="">
+        </div> -->
+        <div id="main" class="gt3-contact-widget">
+            <button class="openbtn " onclick="openNav()">
+                <div class="gt3-contact-widget_label with-icon" style="background-color: #0072b1;">
+                    Request a <strong>Call Back</strong>
+                    <span class="gt3-contact-widget_icon">
+                        <img class=" lazyloaded" src="/call_back_icon.png" data-src="/call_back_icon.png" alt="Request a <strong>Call Back</strong>">
+                    </span>
+                </div>
+            </button>
+        </div>
+        <%= yield %>
+    </div>
+    <div id="back-to-top"><a class="top arrow" href="#top"><i class="fa fa-angle-up"></i> <span>TOP</span></a></div>
+    <div class="mobile_callback show_on_mobile"><a class="top arrow" href="tel:<%= the_general.phone %>">
+            <span>
+                <img class=" lazyloaded" src="/call_back_icon.png" data-src="/call_back_icon.png" alt="Request a <strong>Call Back</strong>">
+            </span>
+        </a>
+    </div>
+
+
+
+    <%= render partial: 'layouts/request_callback' %>
+
+    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="promoCodeModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <button type="button" class="close mt-3" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="text-center mt-4">
+                    <img src="<%= the_general.header_logo %>" />
+                </div>
+                <div class="modal-header">
+                    <div class="modal-title" id="exampleModalLongTitle" style="width: 100%;">
+                        <div class="section-title mb-10">
+                            <h2 class="text-center">
+                                <%= home_page_popup.title %>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body" style="padding-top: 0px;">
+                    <div class="text-center">
+                        <%= home_page_popup.sub_title %>
+                    </div>
+                    <div class="text-center mt-3" style="font-size: 20px; border: 5px dashed #bbb; border-radius: 15px;">
+                        <%= home_page_popup.promo_code %>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% unless controller_name == "home" %>
+        <script defer src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <% end %>
+
+    <script>
+    var plugin_path = '/js/';
+    </script>
+
+    <script defer src="/js/jquery-3.3.1.min.js"></script>
+    <script defer src="/js/plugins-jquery.js"></script>
+    <script defer src="/js/custom.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/gh/LeaVerou/awesomplete/awesomplete.min.js"></script>
+
+    <!-- JS THATS LOCADED DEFFERED --
+    <script defer type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+    <script defer src="/lf.js"></script>
+    -- JS THATS LOCADED DEFFERED -->
+
+    <!-- NON REQUIRED JS
+        <script src="/revolution/js/jquery.themepunch.tools.min.js"></script>
+        <script src="/revolution/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+        <script src="/revolution/js/extensions/revolution.extension.video.min.js"></script>
+        <script src="/revolution/js/revolution-custom.js"></script>
+    -->
+    
+    <script type="text/javascript">
+        
+    window.addEventListener('load', function () {
+
+        setTimeout(function(){
+
+            css_files = ["/css/plugins/animate.css", "/css/plugins/font-awesome.min.css", "https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,500,500i,600,700,800,900|Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900", "https://fonts.googleapis.com/css?family=Dosis:300,400,500,600,700,800", "/css/plugins/bootstrap-datetimepicker.min.css", "/css/plugins/dataTables.bootstrap4.min.css", "/css/plugins/magnific-popup.css", "/css/plugins/mediaelementplayer.css", "/css/plugins/owl.carousel.min.css", "/css/plugins/slick-theme.css", "/css/plugins/themify-icons.css", "/css/plugins/fullcalendar.css", "https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css", "https://cdn.jsdelivr.net/gh/LeaVerou/awesomplete/awesomplete.css", "/revolution/css/settings.css", "/css/shortcodes/accordion.css", "/css/shortcodes/action-box.css", "/css/shortcodes/blockquote.css", "/css/shortcodes/bootstrap-typography.css", "/css/shortcodes/button.css", "/css/shortcodes/clients.css", "/css/shortcodes/contact-form.css", "/css/shortcodes/countdown.css", "/css/shortcodes/counter.css", "/css/shortcodes/divider.css", "/css/shortcodes/dropcap.css", "/css/shortcodes/feature-text.css", "/css/shortcodes/list-style.css", "/css/shortcodes/nice-select.css", "/css/shortcodes/owl-carousel.css", "/css/shortcodes/pie-chart.css", "/css/shortcodes/pricing.css", "/css/shortcodes/progress-bar.css", "/css/shortcodes/section-title.css", "/css/shortcodes/social-icons.css", "/css/shortcodes/tabs.css", "/css/shortcodes/team.css", "/css/shortcodes/testimonial.css", "/css/shortcodes/side-panel.css", "/css/shortcodes/onload-modal.css", "/theme_color.css"]
+
+            css_files.forEach(
+                function (file_url) {
+                    var cssMain = document.createElement('link');
+                    cssMain.href = file_url;
+                    cssMain.rel = 'stylesheet';
+                    cssMain.type = 'text/css';
+                    document.getElementsByTagName('head')[0].appendChild(cssMain);
+                }
+            );
+
+        }, 3000);
+
+    });
+
+    </script>
+
+    <script type="text/javascript">
+        
+    window.addEventListener('load', function () {
+
+        setTimeout(function(){
+
+            js_files = ["https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js", "/lf.js"]
+
+            js_files.forEach(
+                function (file_url) {
+                  var resource = document.createElement('script'); 
+                  resource.async = "true";
+                  resource.src = file_url;
+                  var script = document.getElementsByTagName('script')[0];
+                  script.parentNode.insertBefore(resource, script);
+                }
+            );
+
+            <% if controller_name == "home" %>
+
+                var input = document.getElementById("searchBar");
+
+                // Show label but insert value into the input:
+                new Awesomplete(input, {
+                    list: [
+                        <% Service.all.each do | service | %> { label: "<%= service.name %>", value: "<%= service_detail_path(slug: service.url_slug)%>" },
+                        <% end %>
+                    ]
+                });
+
+                $("#searchBar").on('awesomplete-selectcomplete', function(event) {
+                    window.location.href = event.originalEvent.text.value;
+                })
+
+            <% end %>
+
+            setTimeout(function(){ 
+                window.dispatchEvent(new Event('resize'));
+            }, 1000);
+
+            <% unless home_page_popup.title.blank? %>
+            setTimeout(function(){ 
+                $("#promoCodeModal").modal();
+            }, 3000);
+            <% end %>
+
+        }, 3000);
+
+    });
+
+    </script>
+
+    <% if mobile? %>
+
+        <script async data-id="77236" src="https://cdn.widgetwhats.com/script.min.js"></script>
+
+    <% else %>
+
+        <script src="//code.jivosite.com/widget/CCSxhaXZY3" async></script>
+
+    <% end %>
+
+</body>
+</html>

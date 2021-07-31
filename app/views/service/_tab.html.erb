@@ -1,0 +1,165 @@
+<style type="text/css">
+#tabs .col-sm-2 {
+    font-size: 15px;
+    padding-bottom: 20px;
+}
+
+#tabs .col-sm-2 a {
+    color: black;
+}
+
+#tabs .row {
+    border-bottom: 0.5px solid grey;
+}
+
+#tabs .col-sm-2.active {
+    border-bottom: 2px solid #0072b1;
+}
+
+
+#tabs .col-sm-2.active a {
+    color: #0072b1;
+}
+
+.sticky {
+    position: fixed;
+    top: 60px;
+    width: 100%;
+    padding-top: 30px;
+    max-width: unset;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    z-index: 2;
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    #tabs {
+        display: none;
+    }
+
+}
+</style>
+<div class="container" id="tabs">
+    <div class="row">
+        <div class="col text-center">
+            <a href="#overview">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                <br />
+                <% unless @service.overview_title.blank? %>
+                <%= @service.overview_title %>
+                <% else %>
+                Overview
+                <% end %>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="#benifits">
+                <i class="fa fa-file-text" aria-hidden="true"></i>
+                <br />
+                <% unless @service.benefit_title.blank? %>
+                <%= @service.benefit_title %>
+                <% else %>
+                Benefits
+                <% end %>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="#how_to_register">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                <br />
+                <% unless @service.how_to_register_title.blank? %>
+                <%= @service.how_to_register_title %>
+                <% else %>
+                How To Register
+                <% end %>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="#docs_required">
+                <i class="fa fa-file-text" aria-hidden="true"></i>
+                <br />
+                <% unless @service.document_register_title.blank? %>
+                <%= @service.document_register_title %>
+                <% else %>
+                Documents Required
+                <% end %>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="#how_we_help">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <br />
+                <% unless @service.how_we_help_title.blank? %>
+                <%= @service.how_we_help_title %>
+                <% else %>
+                How We Help
+                <% end %>
+            </a>
+        </div>
+        <div class="col text-center">
+            <a href="#faqs">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <br />
+                <% unless @service.faq_title.blank? %>
+                <%= @service.faq_title %>
+                <% else %>
+                FAQs
+                <% end %>
+            </a>
+        </div>
+        <% unless @service.price_plans.count == 0 %>
+        <div class="col text-center">
+            <a href="#price_section">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <br />
+                <% unless @service.faq_title.blank? %>
+                Price Plan
+                <% else %>
+                Price Plan
+                <% end %>
+            </a>
+        </div>
+        <% end %>
+    </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function() { checkSticky() };
+
+    // Get the navbar
+    var navbar = document.getElementById("tabs");
+
+    var testimonals = document.getElementById("testimonals_section");
+
+    // Get the offset position of the navbar
+    var sticky = navbar.offsetTop;
+    var tooLowForSticky = testimonals.offsetTop - 300;
+
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function checkSticky() {
+        if (window.pageYOffset >= sticky && window.pageYOffset <= tooLowForSticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+
+    $("#tabs a").on('click', function(event) {
+        event.preventDefault();
+        var hash = this.hash;
+        $('html, body').animate({
+            scrollTop: $(hash).offset().top - 200
+        });
+    });
+
+
+});
+</script>

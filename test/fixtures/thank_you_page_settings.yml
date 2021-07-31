@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  header_image: MyString
+  lead_thankyou_page_title: MyString
+  lead_thankyou_page_body: MyText
+  lead_thank_you_page_javascript: MyText
+  payment_thankyou_page_title: MyString
+  payment_thankyou_page_body: MyText
+  lead_thank_you_page_javascript: MyText
+
+two:
+  header_image: MyString
+  lead_thankyou_page_title: MyString
+  lead_thankyou_page_body: MyText
+  lead_thank_you_page_javascript: MyText
+  payment_thankyou_page_title: MyString
+  payment_thankyou_page_body: MyText
+  lead_thank_you_page_javascript: MyText

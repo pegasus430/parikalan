@@ -1,0 +1,2 @@
+module FasaiRegistrationInquiryHelper
+end

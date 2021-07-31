@@ -1,0 +1,221 @@
+<section class="two-side space bg-gray mb-5">
+    <div class="container text-center">
+        <div class="section-heading pb-5">
+            <h2>FSSAI - Registration<span class="heading_divider"> </span> </h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+            <% unless @service.form_instruction.blank? %>
+            <div class="col-md-7">
+                <% else %>
+                <div class="col-md-12">
+                    <% end %>
+                    <div class="col-left">
+                        <div class="left-header">
+                            <h2>Registration Form</h2>
+                        </div>
+                        <div class="left-data">
+                            <form 
+                                class="custom-form custom_form_submit" 
+                                data-success-id="success_message_1" 
+                                action="<%= fasai_registration_inquiry_index_path %>" 
+                                method="post" 
+                                name="contactform" 
+                                data-success-msg="Thank you! We will be in touch soon!"
+                                id="cf_fasi_form"
+                            >
+
+                                <%= recaptcha_action('form_fill') %>
+
+                                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                                <div class="form-group">
+                                    <label class="text-left">Applicant Name (Required) *</label>
+                                    <input type="text" class="form-control" name="name" id="name" required="true" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left"> Mobile Number (Required) *</label>
+                                    
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="phone" 
+                                        id="phone" 
+                                        required="true" 
+                                        pattern="\d{10}" 
+                                        value="" 
+                                        maxlength="100">
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left"> Email Id (Required) *</label>
+                                    
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        name="email"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                        id="email" 
+                                        required="true" 
+                                        value="" 
+                                        maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Nature of Business</label>
+                                    <input type="text" class="form-control" name="nature_of_business" id="nature_of_business" required="true" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label>Expected turnover ( Annually) *</label><br>
+                                    <label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="Less than 12 lakh" name="expected_turnover" id="expected_turnover" required="true" checked>&nbsp;Less than 12 lakh
+                                        &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="More than 12 lakh" name="expected_turnover" id="expected_turnover" required="true">&nbsp;More than 12 lakh
+                                    </label>
+                                    <div id="error_trds" class="error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Business Address</label>
+                                    <input type="text" class="form-control" name="business_address" id="business_address" required="true" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Business Name</label>
+                                    <input type="text" class="form-control" name="business_name" id="business_name" required="true" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Pin Code</label>
+                                    <input 
+                                        type="text"
+                                        pattern="\d+"
+                                        class="form-control" 
+                                        name="pincode" 
+                                        id="pincode" 
+                                        required="true" 
+                                        value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Choose your business entity</label>
+                                    <select class="form-control" name="business_entity" id="business_entity">
+                                        <option value="Select" selected="selected" data-calc-value="Select">Select </option>
+                                        <option value="Private Limited Company" data-calc-value="Private Limited Company">Private Limited Company </option>
+                                        <option value="Public Limited Company" data-calc-value="Public Limited Company">Public Limited Company </option>
+                                        <option value="Partnership" data-calc-value="Partnership">Partnership </option>
+                                        <option value="Proprietorship" data-calc-value="Proprietorship">Proprietorship </option>
+                                        <option value="Other" data-calc-value="Other">Other </option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Registration Tenure *</label>
+                                    <select required class="form-control" name="registration_tenure" id="registration_tenure">
+                                        <option 
+                                            value=""
+                                            disabled
+                                            selected 
+                                            >Select </option>
+                                        <option 
+                                            value="1 Year" 
+                                            data-calc-value="1 Year"
+                                            data-lp="1599"
+                                            data-hp="7999"
+                                            >1 Year </option>
+                                        <option 
+                                            value="2 Years" 
+                                            data-calc-value="2 Years"
+                                            data-lp="1999"
+                                            data-hp="9999"
+                                            >2 Years </option>
+                                        <option 
+                                            value="3 Years" 
+                                            data-calc-value="3 Years"
+                                            data-lp="2599"
+                                            data-hp="11999"
+                                            >3 Years </option>
+                                        <option 
+                                            value="4 Years" 
+                                            data-calc-value="4 Years"
+                                            data-lp="2999"
+                                            data-hp="13999"
+                                            >4 Years </option>
+                                        <option 
+                                            value="5 Years" 
+                                            selected="selected" 
+                                            data-calc-value="5 Years"
+                                            data-lp="3599"
+                                            data-hp="15999"
+                                            >5 Years </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <p>I hereby declare that information provided in the online registration form is true to the best of my knowledge and I accept terms, disclaimer, and policies by clicking "Proceed &amp; Pay" button.</p>
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="submit" 
+                                        class="btn btn-primary custom_form_payment_button" 
+                                        id="fsai_form_submit_button"
+                                        data-formidtosubmit="cf_fasi_form"
+                                        value="<%= @service.custom_form_button_text.nil? ? "Submit" : @service.custom_form_button_text %>"
+                                        data-amount=""
+                                    >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% unless @service.form_instruction.blank? %>
+                <div class="col-md-5">
+                    <div class="col-right">
+                        <div class="right-header">
+                            <h2>Instructions</h2>
+                        </div>
+                        <div class="right-data">
+                            <%= @service.form_instruction.html_safe %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+</section>
+
+
+<script type="text/javascript">
+    
+let paymentSettingsObject = {
+    nameSelector: '#name',
+    emailSelector: '#email',
+    phoneSelector: '#phone',
+    purchasedItem: 'FASAI - Registration',
+    model: 'FasaiRegistrationInquiry'
+};
+
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+   
+    function setPrice() {
+        let val = $("input[name=expected_turnover]:checked").val();
+        if ( val == "Less than 12 lakh" ) {
+            $("#fsai_form_submit_button").attr('data-amount',  $("#registration_tenure option:selected").data('lp') );
+        }
+        else {
+            $("#fsai_form_submit_button").attr('data-amount',  $("#registration_tenure option:selected").data('hp') );
+        }
+    }
+
+    $("#registration_tenure").change(
+        function () {
+            setPrice();
+        }
+    );
+
+    $("input[name=expected_turnover]:radio").change(
+        function () {
+            setPrice();
+        }
+    );
+
+    setPrice();
+
+});
+</script>

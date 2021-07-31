@@ -1,0 +1,30 @@
+<section class="blog blog-grid-3-column white-bg page-section-ptb pb-0">
+    <div class="container">
+        <div class="row">
+            <% Service.all.each do |s| %>
+                <div class="col-lg-4 col-md-4 mb-2">
+                    <div class="blog-entry mb-50">
+                        <div class="entry-image clearfix">
+                            <img class="img-fluid" src="<%= s.image.thumb %>" alt="">
+                        </div>
+                        <div class="blog-detail">
+                            <div class="entry-title mb-10">
+                                <a href="<%= service_detail_path(slug: s.url_slug)%>"><%= s.name %></a>
+                            </div>
+                           
+                            <div class="entry-content">
+                                <p><%= s.short_description %></p>
+                            </div>
+                            <div class="entry-share clearfix">
+                                <div class="entry-button">
+                                    <a class="button arrow" href="<%= service_detail_path(slug: s.url_slug)%>">Read More<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</section>

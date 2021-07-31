@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email_header_text: MyText
+  email_footer_text: MyText
+  inquiry_notification_email_address: MyString
+  razor_pay_key: MyString
+
+two:
+  email_header_text: MyText
+  email_footer_text: MyText
+  inquiry_notification_email_address: MyString
+  razor_pay_key: MyString

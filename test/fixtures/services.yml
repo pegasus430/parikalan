@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  name: MyString
+  short_description: MyString
+  long_description: MyText
+  highlight_image: MyString
+  overview: MyText
+  benefits: MyText
+  how_to_register: MyText
+  document_required: MyText
+  help_in_registering: MyText
+  url_slug: MyString
+  show_on_homepage: false
+
+two:
+  image: MyString
+  name: MyString
+  short_description: MyString
+  long_description: MyText
+  highlight_image: MyString
+  overview: MyText
+  benefits: MyText
+  how_to_register: MyText
+  document_required: MyText
+  help_in_registering: MyText
+  url_slug: MyString
+  show_on_homepage: false

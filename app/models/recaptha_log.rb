@@ -1,0 +1,2 @@
+class RecapthaLog < ApplicationRecord
+end

@@ -1,0 +1,56 @@
+<section class="our-history white-bg page-section-ptb">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="section-title text-center">
+                    <!-- <h6>From the beginning</h6> -->
+                    <h2 class="title-effect">
+                        <%= about_page.history_section_title %>
+                    </h2>
+                    <p>
+                        <%= about_page.history_section_subtitle %>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="timeline-dots"></div>
+                <ul class="timeline">
+                    <% History.all.each_with_index do |e, idx | %>
+                    <% if idx%2 == 0 %>
+                        <li>
+                            <div class="timeline-badge">
+                                <p class="theme-color"><%= e.date %></p>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h5 class="timeline-title text-muted"><%= e.title %></h5>
+                                </div>
+                                <div class="timeline-body">
+                                    <%= e.description.html_safe %>
+                                </div>
+                            </div>
+                        </li>
+                    <% else %>
+                        <li class="timeline-inverted">
+                            <div class="timeline-badge">
+                                <p class="theme-color"><%= e.date %></p>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h5 class="timeline-title text-muted"><%= e.title %> </h5>
+                                </div>
+                                <div class="timeline-body">
+                                    <%= e.description.html_safe %>
+                                </div>
+                            </div>
+                        </li>
+                    <% end %>
+                    <% end %>
+                    <li class="timeline-arrow"><i class="fa fa-chevron-down"></i></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

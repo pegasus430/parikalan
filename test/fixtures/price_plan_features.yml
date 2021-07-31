@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  available: false
+  not_available: false
+  price_plans: one
+
+two:
+  title: MyString
+  available: false
+  not_available: false
+  price_plans: two

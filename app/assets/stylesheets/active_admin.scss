@@ -1,0 +1,15 @@
+$primary-color: #1B7ED2;
+
+@import "active_admin/mixins";
+@import "arctic_admin/base";
+@import 'activeadmin/quill_editor_input';
+
+
+.quill_editor {
+	text-align: center;
+}
+
+
+.thumb {
+	max-height: 100px;
+}

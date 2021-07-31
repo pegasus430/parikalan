@@ -1,0 +1,19 @@
+<section class="clearfix">
+    <div class="page-section-pb">
+        <div class="container">
+            <div class="row mt-70">
+                <div class="col-lg-12 col-md-12">
+                    <div class="clients-list">
+                        <div class="owl-carousel" data-nav-dots="false" data-items="5" data-md-items="4" data-sm-items="3" data-xs-items="2" data-xx-items="2">
+                            <% Client.all.each do |c| %>
+                            <div class="item">
+                                <img class="img-fluid mx-auto" src="<%= c.logo %>" alt="">
+                            </div>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

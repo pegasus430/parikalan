@@ -1,0 +1,28 @@
+<style type="text/css">
+  
+@media only screen and (min-width: 768px) {
+  #searchBar {
+    width: 500px;
+  }
+}
+
+</style>
+
+<section class="page-title faq-page-title bg-overlay-black-60 parallax" data-jarallax='{"speed": 0.6}' style="background-image: url(<%= home_page.banner_image %>);">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+          <h1 class="text-white"><%= home_page.banner_title %></h1>
+           <span class="text-white" style="font-weight: bold; font-size: 20px;"><%= home_page.banner_subtitle %></span>
+           <div class="row justify-content-center form pb-60 xs-mt-20">
+             <div class="col-sm-6 mt-50">
+               <input type="search" class="form-control" placeholder="Search...." style="border-radius: 20px;" id="searchBar">
+             </div>
+             <!-- <div class="col-sm-4 mt-50">
+              <a class="button btn-block" href="#">Search</a>
+             </div> -->
+           </div>
+      </div>
+     </div>
+  </div>
+</section>

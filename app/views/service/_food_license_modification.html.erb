@@ -1,0 +1,106 @@
+<section class="two-side space bg-gray mb-5">
+    <div class="container text-center">
+        <div class="section-heading pb-5">
+            <h2>Food License Modification Registration Form<span class="heading_divider"> </span> </h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12"></div>
+            <% unless @service.form_instruction.blank? %>
+            <div class="col-md-7">
+                <% else %>
+                <div class="col-md-12">
+                    <% end %>
+                    <div class="col-left">
+                        <div class="left-header">
+                            <h2>Registration Form</h2>
+                        </div>
+                        <div class="left-data">
+                            <form 
+                                class="custom-form custom_form_submit" 
+                                data-success-id="success_message_1" 
+                                action="<%= fssai_modification_inquiry_index_path %>" 
+                                method="post" 
+                                name="contactform" 
+                                data-success-msg="Thank you! We will be in touch soon!"
+                                id="cf_food_license_modification"
+                            >
+
+                                <%= recaptcha_action('form_fill') %>
+
+                                <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+                                <div class="form-group">
+                                    <label>Type of Modification *</label><br>
+                                    <label>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value=" License" name="type_of_modification" checked id="type_of_modification"> License
+                                        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<input type="radio" value="Registration" name="type_of_modification" id="type_of_modification"> Registration
+                                    </label>
+                                    <div id="error_trds" class="error"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Applicant Name *</label>
+                                    <input type="text" class="form-control" required="true" name="applicant_name" id="applicant_name" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Email*</label>
+                                    
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        required="true"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                        name="email" 
+                                        id="email" 
+                                        value="" 
+                                        maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Mobile Number*</label>
+                                    <input type="text" class="form-control" required="true" pattern="\d{10}" name="phone" id="phone" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-left">Food Items want to add</label>
+                                    <input type="text" class="form-control" required="true" name="food_items_want_to_add" id="food_items_want_to_add" value="" maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <input 
+                                        type="submit" 
+                                        class="btn btn-primary custom_form_payment_button" 
+                                        id="submit"
+                                        data-formidtosubmit="cf_food_license_modification"
+                                        value="<%= @service.custom_form_button_text.blank? ? "Submit" : @service.custom_form_button_text %>"
+                                        data-amount="<%= @service.custom_form_pricing %>"
+                                    >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% unless @service.form_instruction.blank? %>
+                <div class="col-md-5">
+                    <div class="col-right">
+                        <div class="right-header">
+                            <h2>Instructions</h2>
+                        </div>
+                        <div class="right-data">
+                            <%= @service.form_instruction.html_safe %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+</section>
+
+
+<script type="text/javascript">
+    
+let paymentSettingsObject = {
+    nameSelector: '#applicant_name',
+    emailSelector: '#email',
+    phoneSelector: '#phone',
+    purchasedItem: 'Food License Modification',
+    model: 'FssaiModificationInquiry'
+};
+
+</script>

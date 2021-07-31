@@ -1,0 +1,123 @@
+<footer class="footer black-bg page-section-ptb">
+    <div class="container">
+        <div class="row top">
+            <div class="col-lg-6 col-md-6">
+                <img class="img-fluid" id="logo-footer" src="<%= the_general.footer_logo %>" alt="">
+            </div>
+            <!-- <div class="col-lg-6 col-md-6">
+                <div class="social text-left sm-mt-0 text-md-right xs-mt-20">
+                    <ul>
+                        <li>
+                            <a href="#"> <i class="fa fa-facebook"></i> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="fa fa-twitter"></i> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="fa fa-dribbble"></i> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                        </li>
+                    </ul>
+                </div>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="divider mt-10 mb-10"></div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-3 col-md-6 col-sm-6 sm-mb-30">
+                <div class="footer-useful-link footer-hedding">
+                    <h6 class="text-white mb-30 mt-10 text-uppercase">Quick Links</h6>
+                    <ul>
+                        <li><a href="<%= home_path %>">Home</a></li>
+                        <li><a href="<%= about_path %>">About Us</a></li>
+                        <li><a href="<%= blog_path %>">Blog</a></li>
+                        <li><a href="<%= contact_path %>">Contact</a></li>
+
+                        <% PolicyPage.all.each do | policy_page | %>
+                        <li><a href="<%= policy_page_path(slug: policy_page.url_slug) %>"><%= policy_page.title %></a></li>
+                        <% end %>
+
+                    </ul>
+                </div>
+            </div>
+
+            <% ServiceCategory.where(show_in_footer: true).all.each do |s| %>
+                <div class="col-lg-3 col-md-6 col-sm-6 sm-mb-30">
+                    <div class="footer-useful-link footer-hedding">
+                        <h6 class="text-white mb-30 mt-10 text-uppercase"><%= s.name %></h6>
+                        <ul>
+                            <% s.services.where(show_in_footer: true).all.each do |c| %>
+                            <li><a href="<%= service_detail_path(slug: c.url_slug)%>"><%= c.name %></a></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+        <div class="row pt-5">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <%= the_general.disclaimer.html_safe %>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-lg-12 col-md-12 text-center text-md-center">
+            <div class="social-icons color-hover mt-10">
+             <ul>
+
+                <% unless GeneralInformation.first.facebook_page.blank? %>
+              
+                    <li class="social-facebook">
+                        <a href="<%= GeneralInformation.first.facebook_page %>" target="_blank"><i class="fa fa-facebook"></i></a>
+                    </li>
+
+                <% end %>
+              
+                <% unless GeneralInformation.first.instagram_page.blank? %>
+
+                    <li class="social-linkedin">
+                        <a href="<%= GeneralInformation.first.instagram_page %>" target="_blank"><i class="fa fa-instagram"></i></a></li>
+
+                <% end %>
+
+                <% unless GeneralInformation.first.twiiter_page.blank? %>
+
+                    <li class="social-dribbble"><a href="<%= GeneralInformation.first.twiiter_page %>" target="_blank"><i class="fa fa-twitter"></i> </a></li>
+
+                <% end %>
+              
+                <% unless GeneralInformation.first.linkedin_page.blank? %>
+
+                    <li class="social-twitter"><a href="<%= GeneralInformation.first.linkedin_page %>" target="_blank"><i class="fa fa-linkedin"></i> </a></li>
+
+                <% end %>
+
+              
+             </ul>
+           </div>
+          </div>
+        </div>
+
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,113 @@
+<style type="text/css">
+.p_custom {
+    padding: 20px;
+}
+
+.p_custom ul {
+    margin-left: 20px;
+    list-style: disc;
+}
+
+.p_custom ul li {
+    display: list-item;
+    list-style: disc;
+}
+
+.p_custom ol li {
+    display: list-item;
+    list-style: decimal;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+</style>
+<section class="service white-bg page-section-ptb p_custom" id="overview">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <% unless @service.overview_title.blank? %>
+                <h2 class="pb-4">
+                    <%= @service.overview_title %>
+                </h2>
+                <% else %>
+                <h2 class="pb-4">Overview</h2>
+                <% end %>
+                <div class="tab_image">
+                    <%= @service.overview.html_safe %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="service white-bg page-section-ptb p_custom" id="benifits">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <% unless @service.benefit_title.blank? %>
+                <h2 class="pb-4">
+                    <%= @service.benefit_title %>
+                </h2>
+                <% else %>
+                <h2 class="pb-4">Benefits</h2>
+                <% end %>
+                <div class="tab_image">
+                    <%= @service.benefits.html_safe %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="service white-bg page-section-ptb p_custom" id="how_to_register">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <% unless @service.how_to_register_title.blank? %>
+                <h2 class="pb-4">
+                    <%= @service.how_to_register_title %>
+                </h2>
+                <% else %>
+                <h2 class="pb-4">How To Register</h2>
+                <% end %>
+                <div class="tab_image">
+                    <%= @service.how_to_register.html_safe %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="service white-bg page-section-ptb p_custom" id="docs_required">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <% unless @service.document_register_title.blank? %>
+                <h2 class="pb-4">
+                    <%= @service.document_register_title %>
+                </h2>
+                <% else %>
+                <h2 class="pb-4">Documents Required</h2>
+                <% end %>
+                <div class="tab_image">
+                    <%= @service.document_required.html_safe %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="service white-bg page-section-ptb p_custom" id="how_we_help">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <% unless @service.how_we_help_title.blank? %>
+                <h2 class="pb-4">
+                    <%= @service.how_we_help_title %>
+                </h2>
+                <% else %>
+                <h2 class="pb-4">How We Help</h2>
+                <% end %>
+                <div class="tab_image">
+                    <%= @service.help_in_registering.html_safe %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%= render partial: 'faq' %>

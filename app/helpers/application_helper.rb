@@ -12,7 +12,6 @@ module ApplicationHelper
     end
   end
 
-  
   def seo_description
     if defined?(@seo_object)
       if !@seo_object.try(:seo_description).nil?

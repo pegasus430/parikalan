@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/pp/:slug',                   to: 'policy#show',                        as: 'policy_page'
   post '/enquiry',                   to: 'enquiry#create',                     as: 'enquiry'
   post '/request_callback_enquiry',  to: 'request_callback_enquiry#create',    as: 'request_callback_enquiry'
-  
+
   resources :fasai_registration_inquiry, only: [:create, :update ]
   resources :fssai_renewal_inquiry, only: [:create, :update ]
 

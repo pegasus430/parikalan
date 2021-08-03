@@ -14,9 +14,9 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
-gem 'activeadmin'
-gem 'arctic_admin'
-gem 'activeadmin_quill_editor'
+# gem 'activeadmin'
+# gem 'arctic_admin'
+# gem 'activeadmin_quill_editor'
 
 gem 'devise'
 gem 'carrierwave', '~> 1.0'
